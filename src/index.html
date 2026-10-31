@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Ritza Reels</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="mblur" x="-20%" y="-5%" width="140%" height="110%" color-interpolation-filters="sRGB">
+      <feGaussianBlur id="mblurG" stdDeviation="0 0"/>
+    </filter>
+    <filter id="mblurV" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB">
+      <feGaussianBlur id="mblurVG" stdDeviation="0 0"/>
+    </filter>
+  </defs>
+</svg>
+<div id="stage">
+  <div class="layer" id="bgDark"></div>
+  <div class="layer" id="bgLight"></div>
+  <div id="scenes" class="layer"></div>
+  <div class="layer" id="bgGreen" style="clip-path:circle(0px at 540px 600px)"></div>
+  <div id="s7host" class="layer"></div>
+  <canvas id="fx" width="1080" height="1920"></canvas>
+  <div id="cap"><div id="capPill"></div></div>
+  <div id="vignette"></div>
+  <canvas id="grain" width="540" height="960"></canvas>
+  <div id="guides">
+    <div style="position:absolute;left:0;right:0;top:0;height:250px;background:rgba(255,0,0,.25)"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:380px;background:rgba(255,0,0,.25)"></div>
+  </div>
+</div>
+<script src="core.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+<script src="s1.js"></script>
+<script src="s2.js"></script>
+<script src="s3.js"></script>
+<script src="s4.js"></script>
+<script src="s5.js"></script>
+<script src="s6.js"></script>
+<script src="s7.js"></script>
+<script src="boot.js"></script>
+</body>
+</html>
