@@ -1,16 +1,16 @@
 // ===== Cena 5 — Web: laptop 3D com painel do dia (21–26 s) e início da cena 6 =====
 function workoutHTML() {
-  const blk = (w, c, lbl) => `<div style="flex:${w};height:46px;border-radius:9px;background:${c};position:relative"><span style="position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:16px;font-weight:600;color:#8A8E95">${lbl}</span></div>`;
-  const reps = Array.from({ length: 6 }, (_, i) => blk(1.2, '#21D193', i === 0 ? 'Z4' : '') + (i < 5 ? `<div style="flex:.7;height:16px;align-self:flex-end;border-radius:4px;background:#D9DBDE"></div>` : '')).join('');
+  // 4 km em regenerativo — o mesmo treino que aparece na tela do app do aluno
+  const km = [1, 2, 3, 4].map(k => `<div style="flex:1;height:46px;border-radius:9px;background:${k % 2 ? '#A9EBD3' : '#8FE5C6'};position:relative"><span style="position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:16px;font-weight:600;color:#8A8E95">${k} km</span></div>`).join('');
   return `<div style="width:600px;padding:30px 32px;border-radius:30px;background:#FFFFFF;color:#0A0A0A;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.06);font-family:'Inter Display',Inter,sans-serif">
-    <div style="display:flex;align-items:center;gap:12px"><div class="pill" style="background:#0A0A0A;color:#21D193;font-size:17px;letter-spacing:.16em">NOVO TREINO</div><div style="margin-left:auto;font-size:19px;font-weight:500;color:#6B6F76">${DATA.treino.dia}</div></div>
-    <div style="font-size:52px;font-weight:700;letter-spacing:-.045em;margin-top:18px;line-height:1">Intervalado<br>6 × 800 m</div>
-    <div style="display:flex;align-items:flex-end;gap:5px;margin-top:52px">${blk(2.4, '#A9AEB4', 'Z2')}${reps}${blk(1.8, '#0A0A0A', 'Z1')}</div>
+    <div style="display:flex;align-items:center;gap:12px"><div class="pill" style="background:#0A0A0A;color:#21D193;font-size:17px;letter-spacing:.16em">NOVO TREINO</div><div class="pill" style="background:#F1F2F3;color:#3A3D42;font-size:17px">Rodagem</div><div style="margin-left:auto;font-size:19px;font-weight:500;color:#6B6F76">${DATA.treino.dia}</div></div>
+    <div style="font-size:54px;font-weight:700;letter-spacing:-.045em;margin-top:18px;line-height:1">4km em<br>regenerativo</div>
+    <div style="display:flex;gap:6px;margin-top:52px">${km}</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:22px;font-size:19px;font-weight:500;color:#3A3D42">
-      <div><span style="color:#A9AEB4">●</span> Aquecimento 15 min</div><div><span style="color:#21D193">●</span> 6 × 800 m a 3:52</div>
-      <div><span style="color:#D9DBDE">●</span> Rec. 2 min trotando</div><div><span style="color:#0A0A0A">●</span> Desaquec. 10 min</div></div>
+      <div><span style="color:#21D193">●</span> Ritmo leve 6:40–7:00/km</div><div><span style="color:#21D193">●</span> FC abaixo de 142 bpm</div>
+      <div><span style="color:#A9AEB4">●</span> Zona Z1–Z2</div><div><span style="color:#0A0A0A">●</span> Duração ≈ 28 min</div></div>
     <div style="display:flex;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid #E7E8EA;font-size:21px;font-weight:600">
-      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:#0A0A0A;margin-right:12px">${DATA.treino.ini}</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0A0A0A">≈ 10 km</span></div>
+      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:#0A0A0A;margin-right:12px">${DATA.treino.ini}</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0A0A0A">4 km</span></div>
   </div>`;
 }
 

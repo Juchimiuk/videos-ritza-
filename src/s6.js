@@ -14,7 +14,7 @@ scene({
           <div style="width:72px;height:72px;border-radius:18px;background:#070707;display:flex;align-items:center;justify-content:center;flex:none;border:1px solid rgba(255,255,255,.14)"><img src="../assets/logo_hd.png" style="width:48px"></div>
           <div style="min-width:0"><div style="display:flex;font-size:15px;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.55)"><span>RITZA</span><span style="margin-left:auto">agora</span></div>
           <div style="font-size:20px;font-weight:800;margin-top:2px;white-space:nowrap">Novo treino do Prof. Rafael</div>
-          <div style="font-size:18px;font-weight:600;color:rgba(255,255,255,.8);margin-top:2px;white-space:nowrap">Intervalado 6 × 800 m · qui, 29/10</div></div></div>
+          <div style="font-size:18px;font-weight:600;color:rgba(255,255,255,.8);margin-top:2px;white-space:nowrap">4km em regenerativo · Rodagem · sábado</div></div></div>
       </div></div>`);
     this.phoneWrap.appendChild(this.phone);
     el.appendChild(this.phoneWrap);

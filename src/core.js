@@ -6,23 +6,40 @@ const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, p) => a + (b - a) * p;
 const inv = (a, b, v) => clamp((v - a) / (b - a));
 
+// ---------- Motion (motion.dev) ----------
+// Todas as curvas e molas do vídeo vêm da biblioteca Motion. Como o vídeo é renderizado quadro a quadro,
+// usamos os geradores da Motion de forma determinística: a mola física (Motion.spring) é amostrada em
+// tabela e as curvas de easing são as funções cubicBezier da própria Motion.
+const M = window.Motion;
+const _springs = new Map();
+// mola física da Motion: devolve f(segundos decorridos) -> 0..1
+function mspring(bounce = .1, visualDuration = .5) {
+  const key = bounce + '|' + visualDuration;
+  if (_springs.has(key)) return _springs.get(key);
+  const g = M.spring({ keyframes: [0, 1], bounce, visualDuration });
+  const N = 3000, lut = new Float32Array(N + 1);
+  for (let i = 0; i <= N; i++) lut[i] = g.next(i).value;
+  const f = sec => { if (sec <= 0) return 0; const ms = sec * 1000; if (ms >= N) return 1; const i = Math.floor(ms); return lut[i] + (lut[i + 1] - lut[i]) * (ms - i); };
+  _springs.set(key, f); return f;
+}
+const cb = (a, b, c, d) => M.cubicBezier(a, b, c, d);
 const E = {
   linear: x => x,
-  outCubic: x => 1 - Math.pow(1 - x, 3),
-  inCubic: x => x * x * x,
-  inOutCubic: x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2,
-  outQuart: x => 1 - Math.pow(1 - x, 4),
-  inQuart: x => x * x * x * x,
-  inOutQuart: x => x < .5 ? 8 * x * x * x * x : 1 - Math.pow(-2 * x + 2, 4) / 2,
-  outExpo: x => x >= 1 ? 1 : 1 - Math.pow(2, -10 * x),
-  inExpo: x => x <= 0 ? 0 : Math.pow(2, 10 * x - 10),
-  inOutExpo: x => x <= 0 ? 0 : x >= 1 ? 1 : x < .5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2,
-  inOutSine: x => -(Math.cos(Math.PI * x) - 1) / 2,
-  outSine: x => Math.sin(x * Math.PI / 2),
-  outBack: x => { const c1 = 0.6, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
-  // mola amortecida: overshoot suave (~6%) e assentamento sem tremor
-  spring: x => x >= 1 ? 1 : 1 - Math.exp(-7 * x) * Math.cos(x * Math.PI * 1.2), // ~1% de overshoot, assentamento firme
-  softSpring: x => x >= 1 ? 1 : 1 - Math.exp(-7.5 * x) * Math.cos(x * Math.PI * 1.1),
+  outCubic: cb(.33, 1, .68, 1),
+  inCubic: cb(.32, 0, .67, 0),
+  inOutCubic: cb(.65, 0, .35, 1),
+  outQuart: cb(.25, 1, .5, 1),
+  inQuart: cb(.5, 0, .75, 0),
+  inOutQuart: cb(.76, 0, .24, 1),
+  outExpo: cb(.16, 1, .3, 1),
+  inExpo: cb(.7, 0, .84, 0),
+  inOutExpo: cb(.87, 0, .13, 1),
+  inOutSine: M.easeInOut,
+  outSine: M.easeOut,
+  outBack: cb(.34, 1.18, .64, 1),
+  // molas físicas da Motion (tempo normalizado: 1 = 1 s)
+  spring: (() => { const f = mspring(.1, .55); return x => x >= 1 ? 1 : f(x); })(),
+  softSpring: (() => { const f = mspring(.05, .7); return x => x >= 1 ? 1 : f(x); })(),
 };
 
 // progresso com easing entre t0 e t1
@@ -68,7 +85,8 @@ function popIn(el, t, t0, { dur = .8, dy = 90, dx = 0, s0 = .92, rot = 0, blur =
   // estilo sóbrio: deslocamentos curtos, sem giros, escala quase neutra
   dy *= .45; dx *= .35; rot = 0; rx *= .15; ry *= .15; s0 = 1 - (1 - s0) * .35; blur = Math.min(blur, 10);
   const p = clamp((t - t0) / dur);
-  const e = ease(p);
+  // padrão: mola física da Motion medida em tempo real decorrido (não normalizado)
+  const e = ease === E.spring ? mspring(.1, dur * .6)(t - t0) : ease(p);
   const o = E.outCubic(clamp(p * 2.2));
   op(el, o);
   tf(el, `translate3d(${(1 - e) * dx}px, ${(1 - e) * dy}px, 0) scale(${lerp(s0, 1, e)}) rotate(${(1 - e) * rot}deg) rotateX(${(1 - e) * rx}deg) rotateY(${(1 - e) * ry}deg)`);
