@@ -27,9 +27,9 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 .kword{position:absolute;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
 .grad-text{color:#fff}
 
-.row{position:absolute;left:60px;width:960px;height:120px;display:flex;align-items:center;padding:0 30px;gap:24px}
-.row .name{font-size:34px;font-weight:700;letter-spacing:-.015em;color:#0A0A0A}
-.row .st{font-size:25px;font-weight:500;margin-top:6px;display:flex;align-items:center;gap:10px;color:#6B6F76}
+.row{position:absolute;left:32px;width:1016px;height:132px;display:flex;align-items:center;padding:0 40px;gap:28px}
+.row .name{font-size:37px;font-weight:700;letter-spacing:-.015em;color:#0A0A0A}
+.row .st{font-size:27px;font-weight:500;margin-top:6px;display:flex;align-items:center;gap:10px;color:#6B6F76}
 .dot{width:12px;height:12px;border-radius:50%;flex:none}
 .esf{margin-left:auto;text-align:right;width:150px;flex:none}
 .esf .n{font-size:44px;font-weight:700;line-height:1;letter-spacing:-.03em}
@@ -39,12 +39,12 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 
 #mapWrap{position:absolute;left:540px;top:860px;width:0;height:0;perspective:1300px;perspective-origin:0 -200px}
 #mapPlane{position:absolute;left:0;top:0;width:1800px;height:2200px;transform-origin:0 0}
-.stat{position:absolute;top:1150px;width:304px;height:220px;padding:28px 26px}
+.stat{position:absolute;top:1136px;width:328px;height:240px;padding:34px 32px}
 .stat .k{font-size:17px;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.5)}
-.stat .v{font-size:64px;font-weight:700;letter-spacing:-.035em;margin-top:16px;line-height:1}
+.stat .v{font-size:70px;font-weight:700;letter-spacing:-.035em;margin-top:16px;line-height:1}
 .stat .u{font-size:24px;font-weight:500;color:rgba(255,255,255,.5);margin-left:6px;letter-spacing:0}
 
-.card4{position:absolute;left:60px;width:960px;padding:34px 38px}
+.card4{position:absolute;left:32px;width:1016px;padding:44px 48px}
 .card4 .k{font-size:18px;font-weight:600;letter-spacing:.18em;color:#6B6F76}
 .card4 .big{font-size:76px;font-weight:700;letter-spacing:-.04em;color:#0A0A0A;line-height:1}
 .pill{display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-weight:600;font-size:22px}

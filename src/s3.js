@@ -63,19 +63,19 @@ scene({
     </div>`);
     el.appendChild(this.runner);
     // HUD superior
-    this.chip = h(`<div class="chip" style="position:absolute;left:60px;top:268px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff">
+    this.chip = h(`<div class="chip" style="position:absolute;left:32px;top:264px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff">
       <svg width="30" height="30" viewBox="0 0 30 30"><circle id="s3spin" cx="15" cy="15" r="11" fill="none" stroke="#21D193" stroke-width="3" stroke-dasharray="48 100" stroke-linecap="round"/><path id="s3ok" d="M8 15.5 l5 5 l9 -11" fill="none" stroke="#21D193" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
       <span id="s3chipT">SINCRONIZANDO COM STRAVA</span></div>`);
-    this.top = h(`<div class="glass" style="left:60px;top:346px;width:960px;height:130px;display:flex;align-items:center;padding:0 30px;gap:22px">
+    this.top = h(`<div class="glass" style="left:32px;top:340px;width:1016px;height:150px;display:flex;align-items:center;padding:0 40px;gap:26px">
       <div class="avatar" style="width:74px;height:74px;font-size:26px;background:#21D193;color:#0A0A0A">MC</div>
       <div><div style="font-size:32px;font-weight:700">Mariana Costa Silva</div><div style="font-size:22px;font-weight:500;color:rgba(255,255,255,.55);margin-top:4px">Corrida · ${DATA.corrida.local}</div></div>
       <div style="margin-left:auto;text-align:right"><div style="font-size:16px;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.5)">TEMPO</div><div id="s3time" style="font-size:50px;font-weight:700;letter-spacing:-.02em;line-height:1.05">0:00</div></div></div>`);
     // HUD inferior: estatísticas ao vivo
     const stat = (x, k, id, u, col, extra = '') => h(`<div class="glass stat" style="left:${x}px;">
       <div class="k">${k}</div><div class="v" style="color:${col}"><span id="${id}">0</span><span class="u">${u}</span></div>${extra}</div>`);
-    this.sDist = stat(60, 'DISTÂNCIA', 's3d', 'km', '#21D193', `<div style="margin-top:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)"><div id="s3bar" style="height:100%;width:0;border-radius:6px;background:#21D193"></div></div>`);
-    this.sPace = stat(388, 'RITMO', 's3p', '/km', '#FFFFFF', `<div style="margin-top:16px;font-size:20px;font-weight:700;color:rgba(255,255,255,.6)">média <b id="s3pm" style="color:#fff">—</b></div>`);
-    this.sHr = stat(716, 'FREQ. CARDÍACA', 's3h', 'bpm', '#FFFFFF', `<svg width="252" height="44" style="margin-top:10px;overflow:visible"><path id="s3ecg" d="M0 22 L40 22 L52 22 L60 6 L70 40 L78 16 L86 22 L130 22 L142 22 L150 6 L160 40 L168 16 L176 22 L220 22 L232 22 L240 6 L250 40" fill="none" stroke="#21D193" stroke-width="3" stroke-linejoin="round" pathLength="1" stroke-dasharray=".35 .65"/></svg>`);
+    this.sDist = stat(32, 'DISTÂNCIA', 's3d', 'km', '#21D193', `<div style="margin-top:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)"><div id="s3bar" style="height:100%;width:0;border-radius:6px;background:#21D193"></div></div>`);
+    this.sPace = stat(376, 'RITMO', 's3p', '/km', '#FFFFFF', `<div style="margin-top:16px;font-size:20px;font-weight:700;color:rgba(255,255,255,.6)">média <b id="s3pm" style="color:#fff">—</b></div>`);
+    this.sHr = stat(720, 'FREQ. CARDÍACA', 's3h', 'bpm', '#FFFFFF', `<svg width="264" height="44" style="margin-top:10px;overflow:visible"><path id="s3ecg" d="M0 22 L40 22 L52 22 L60 6 L70 40 L78 16 L86 22 L130 22 L142 22 L150 6 L160 40 L168 16 L176 22 L220 22 L232 22 L240 6 L250 40" fill="none" stroke="#21D193" stroke-width="3" stroke-linejoin="round" pathLength="1" stroke-dasharray=".35 .65"/></svg>`);
     el.append(this.chip, this.top, this.sDist, this.sPace, this.sHr);
     // card da atividade (match cut da rota) + ícone do Ritza
     this.card = h(`<div class="glass" style="left:150px;top:600px;width:780px;height:560px;padding:0;overflow:hidden;transform-origin:50% 50%">

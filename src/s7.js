@@ -12,21 +12,21 @@ scene({
     el.appendChild(this.stripes);
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`);
     el.appendChild(this.cam);
-    this.icon = h(`<div style="position:absolute;left:380px;top:290px;width:320px;height:320px;border-radius:84px;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)">
-      <img src="../assets/logo_hd.png" style="width:206px">
+    this.icon = h(`<div style="position:absolute;left:350px;top:280px;width:380px;height:380px;border-radius:98px;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)">
+      <img src="../assets/logo_hd.png" style="width:244px">
       <div id="s7shine" style="position:absolute;top:-80px;left:0;width:90px;height:480px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0))"></div></div>`);
-    this.word = h(`<div style="position:absolute;left:0;right:0;top:690px;text-align:center;font-size:128px;font-weight:800;letter-spacing:-.055em;line-height:1;color:#0A0A0A">Ritza</div>`);
-    this.head = h(`<div style="position:absolute;left:60px;right:60px;top:870px;text-align:center;font-size:60px;font-weight:600;letter-spacing:-.035em;line-height:1.12;color:#0A0A0A"></div>`);
+    this.word = h(`<div style="position:absolute;left:0;right:0;top:716px;text-align:center;font-size:156px;font-weight:800;letter-spacing:-.055em;line-height:1;color:#0A0A0A">Ritza</div>`);
+    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:910px;text-align:center;font-size:70px;font-weight:600;letter-spacing:-.035em;line-height:1.12;color:#0A0A0A"></div>`);
     this.hw = ['O', 'app', 'da', 'sua', 'assessoria', '<br>', 'de', 'corrida'].map(w => {
       if (w === '<br>') { this.head.appendChild(document.createElement('br')); return null; }
       const s = h(`<span style="display:inline-block;margin:0 .14em">${w}</span>`); this.head.appendChild(s); return s;
     }).filter(Boolean);
-    this.btn = h(`<div style="position:absolute;left:90px;top:1140px;width:900px;height:136px;border-radius:24px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:40px;font-weight:600;letter-spacing:-.015em;overflow:hidden;box-shadow:0 30px 60px -26px rgba(0,0,0,.6)">
+    this.btn = h(`<div style="position:absolute;left:32px;top:1176px;width:1016px;height:156px;border-radius:24px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:600;letter-spacing:-.015em;overflow:hidden;box-shadow:0 30px 60px -26px rgba(0,0,0,.6)">
       <svg width="40" height="40" viewBox="0 0 44 44"><rect x="5" y="9" width="34" height="30" rx="6" fill="none" stroke="#21D193" stroke-width="3"/><path d="M5 18 H39 M14 4 V13 M30 4 V13" stroke="#21D193" stroke-width="3" stroke-linecap="round"/></svg>
       Agendar demonstração <span style="color:#21D193">· 20 min</span>
       <div id="s7bshine" style="position:absolute;top:-20px;left:0;width:120px;height:180px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.10),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
-    this.url = h(`<div style="position:absolute;left:0;right:0;top:1340px;text-align:center;font-size:48px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br
-      <svg style="position:absolute;left:330px;top:66px;overflow:visible" width="420" height="20"><path d="M4 10 C 120 2, 300 2, 416 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
+    this.url = h(`<div style="position:absolute;left:0;right:0;top:1384px;text-align:center;font-size:54px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br
+      <svg style="position:absolute;left:330px;top:76px;overflow:visible" width="420" height="20"><path d="M4 10 C 120 2, 300 2, 416 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
     this.cam.append(this.icon, this.word, this.head, this.btn, this.url);
     $('#s7host').appendChild(el);
   },

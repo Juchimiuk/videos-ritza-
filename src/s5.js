@@ -98,7 +98,7 @@ scene({
     css(this.lid, 'transform', `translateZ(1px) rotateX(${lerp(-90, 12, open)}deg)`);
     const ry = K(t, [[20.85, -30], [23.2, 12, E.inOutSine], [24.3, 2, E.inOutCubic], [25.5, -3, E.inOutSine], [27.0, 0, E.inOutSine]]);
     const rx = K(t, [[20.85, -30], [23.2, -14, E.inOutSine], [24.3, -5, E.inOutCubic], [27, -4]]);
-    const s = K(t, [[20.85, .55], [21.6, .78, E.outCubic], [23.2, .84, E.inOutSine], [24.2, 1.7, E.inOutCubic], [25.3, 1.72, E.inOutSine], [26.1, 1.6, E.inOutCubic], [27.0, 1.62]]);
+    const s = K(t, [[20.85, .55], [21.6, .9, E.outCubic], [23.2, .97, E.inOutSine], [24.2, 1.7, E.inOutCubic], [25.3, 1.72, E.inOutSine], [26.1, 1.6, E.inOutCubic], [27.0, 1.62]]);
     const ty = K(t, [[20.85, 160], [23.2, 220, E.inOutSine], [24.2, 640, E.inOutCubic], [24.6, 640, E.inOutSine], [25.4, 230, E.inOutCubic], [26.1, 190, E.inOutCubic], [27.0, 200]]);
     const tx = K(t, [[20.85, 140], [23.2, 0, E.inOutSine], [24.2, 60, E.inOutCubic], [24.8, 20, E.inOutSine], [25.4, 150, E.inOutCubic], [26.1, -230, E.inOutCubic], [26.8, -90, E.inOutSine]]);
     // saída: laptop recua para a esquerda enquanto a câmera segue o card (27,0–28,2)

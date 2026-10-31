@@ -44,7 +44,7 @@ scene({
     const land = E.inOutCubic(inv(28.55, 29.15, t));
     // alvo: slot do celular (phone left 305+16+19, top 330+16+190)
     const slot = { x: 310, y: 370, s: 460 / 600 }; // banner de notificação no topo da tela
-    const mid = { x: 540 - 300 * 1.12, y: 800 - 295 * 1.12, s: 1.12 };
+    const mid = { x: 540 - 300 * 1.4, y: 800 - 295 * 1.4, s: 1.4 };
     let x = lerp(r0.x, mid.x, go), y = lerp(r0.y, mid.y, go) - Math.sin(go * Math.PI) * 120, s = lerp(r0.s * lerp(1, 1.12, lift), mid.s, go);
     x = lerp(x, slot.x, land); y = lerp(y, slot.y, land) - Math.sin(land * Math.PI) * 60; s = lerp(s, slot.s, land);
     const rot = Math.sin(go * Math.PI) * -2;
