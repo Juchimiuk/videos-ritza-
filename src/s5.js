@@ -10,7 +10,7 @@ function workoutHTML() {
       <div><span style="color:#A9AEB4">●</span> Aquecimento 15 min</div><div><span style="color:#21D193">●</span> 6 × 800 m a 3:52</div>
       <div><span style="color:#D9DBDE">●</span> Rec. 2 min trotando</div><div><span style="color:#0A0A0A">●</span> Desaquec. 10 min</div></div>
     <div style="display:flex;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid #E7E8EA;font-size:21px;font-weight:600">
-      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:#0A0A0A;margin-right:12px">GR</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0A0A0A">≈ 10 km</span></div>
+      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:#0A0A0A;margin-right:12px">${DATA.treino.ini}</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0A0A0A">≈ 10 km</span></div>
   </div>`;
 }
 

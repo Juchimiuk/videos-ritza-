@@ -59,9 +59,9 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 .kpi .v{font-size:42px;font-weight:700;letter-spacing:-.035em;margin-top:10px;line-height:1}
 .kpi .s{font-size:11px;color:#8A8E95;font-weight:500;margin-top:6px}
 
-.phone{position:absolute;width:470px;height:960px;border-radius:72px;background:linear-gradient(145deg,#2A2B2E,#0B0B0C 40%,#1D1E20);
+.phone{position:absolute;width:520px;height:1064px;border-radius:80px;background:linear-gradient(145deg,#2A2B2E,#0B0B0C 40%,#1D1E20);
   padding:16px;box-shadow:0 60px 120px -40px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.10) inset}
-.pscreen{position:absolute;inset:16px;border-radius:58px;overflow:hidden;background:#F6F6F7;color:#0A0A0A}
+.pscreen{position:absolute;inset:16px;border-radius:64px;overflow:hidden;background:#F6F6F7;color:#0A0A0A}
 
 #cap{position:absolute;left:0;right:0;top:1424px;height:100px;display:flex;justify-content:center;align-items:center}
 #capPill{padding:18px 32px;border-radius:16px;background:rgba(7,7,7,.88);border:1px solid rgba(255,255,255,.10);backdrop-filter:blur(20px);

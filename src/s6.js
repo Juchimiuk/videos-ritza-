@@ -5,18 +5,11 @@ scene({
     const el = this.el = h(`<div class="scene" id="s6"></div>`);
     // celular
     this.phoneWrap = h(`<div style="position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:2200px;perspective-origin:540px 800px"></div>`);
-    this.phone = h(`<div class="phone" style="left:305px;top:330px;transform-origin:50% 50%">
+    this.phone = h(`<div class="phone" style="left:280px;top:296px;transform-origin:50% 50%">
       <div class="pscreen">
-        <div style="position:absolute;left:0;right:0;top:0;height:300px;background:#0A0A0A"></div>
-        <div style="position:absolute;left:36px;right:36px;top:22px;display:flex;font-size:19px;font-weight:800;color:#fff"><span>18:42</span><span style="margin-left:auto">5G ▮▮▮</span></div>
-        <div style="position:absolute;left:50%;top:14px;width:120px;height:34px;margin-left:-60px;border-radius:20px;background:#000"></div>
-        <div style="position:absolute;left:30px;top:84px;display:flex;align-items:center;gap:14px;color:#fff">
-          <img src="../assets/logo_hd.png" style="width:48px"><div><div style="font-size:30px;font-weight:700;letter-spacing:-.03em">Olá, Guilherme</div><div style="font-size:18px;font-weight:500;color:rgba(255,255,255,.55)">Seu próximo treino</div></div></div>
-        <div id="pSlot" style="position:absolute;left:19px;top:190px;width:400px;height:394px"></div>
-        <div style="position:absolute;left:24px;right:24px;top:612px;display:flex;gap:12px">
-          <div style="flex:1;padding:16px;border-radius:18px;background:#fff;border:1px solid #E7E8EA"><div style="font-size:13px;font-weight:600;color:#8A8E95;letter-spacing:.16em">DISTÂNCIA</div><div style="font-size:30px;font-weight:700;letter-spacing:-.03em">≈ 10 km</div></div>
-          <div style="flex:1;padding:16px;border-radius:18px;background:#fff;border:1px solid #E7E8EA"><div style="font-size:13px;font-weight:600;color:#8A8E95;letter-spacing:.16em">DURAÇÃO</div><div style="font-size:30px;font-weight:700;letter-spacing:-.03em">≈ 58 min</div></div></div>
-        <div id="pGo" style="position:absolute;left:24px;right:24px;top:752px;height:84px;border-radius:22px;background:#21D193;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700;color:#0A0A0A">Começar treino</div>
+        <img src="../assets/app_aluno.png" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 0">
+        <div style="position:absolute;left:50%;top:12px;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000"></div>
+        <div id="pSlot" style="position:absolute;left:14px;top:58px;width:410px;height:120px"></div>
         <div id="notif" style="position:absolute;left:14px;right:14px;top:58px;padding:18px 20px;border-radius:30px;background:rgba(22,22,24,.9);backdrop-filter:blur(20px);color:#fff;display:flex;gap:16px;align-items:center;box-shadow:0 20px 50px -10px rgba(0,0,0,.5);border:1.5px solid rgba(255,255,255,.14)">
           <div style="width:72px;height:72px;border-radius:18px;background:#070707;display:flex;align-items:center;justify-content:center;flex:none;border:1px solid rgba(255,255,255,.14)"><img src="../assets/logo_hd.png" style="width:48px"></div>
           <div style="min-width:0"><div style="display:flex;font-size:15px;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.55)"><span>RITZA</span><span style="margin-left:auto">agora</span></div>
@@ -50,14 +43,14 @@ scene({
     const go = E.inOutCubic(inv(27.15, 28.35, t));
     const land = E.inOutCubic(inv(28.55, 29.15, t));
     // alvo: slot do celular (phone left 305+16+19, top 330+16+190)
-    const slot = { x: 340, y: 536, s: 400 / 600 };
+    const slot = { x: 310, y: 370, s: 460 / 600 }; // banner de notificação no topo da tela
     const mid = { x: 540 - 300 * 1.12, y: 800 - 295 * 1.12, s: 1.12 };
     let x = lerp(r0.x, mid.x, go), y = lerp(r0.y, mid.y, go) - Math.sin(go * Math.PI) * 120, s = lerp(r0.s * lerp(1, 1.12, lift), mid.s, go);
     x = lerp(x, slot.x, land); y = lerp(y, slot.y, land) - Math.sin(land * Math.PI) * 60; s = lerp(s, slot.s, land);
     const rot = Math.sin(go * Math.PI) * -2;
     const rY = Math.sin(go * Math.PI) * 8 - Math.sin(land * Math.PI) * 6;
     const flyOn = t >= 27.0 && t < 29.15;
-    op(this.fly, flyOn ? 1 : 0);
+    op(this.fly, flyOn ? 1 - E.inCubic(inv(.55, 1, land)) : 0);
     tf(this.fly, `translate(${x}px, ${y}px) scale(${s}) perspective(1600px) rotate(${rot}deg) rotateY(${rY}deg)`);
     css(this.fly.firstElementChild, 'boxShadow', `0 ${30 + 60 * Math.sin(go * Math.PI)}px ${70 + 80 * Math.sin(go * Math.PI)}px -20px rgba(0,0,0,.55), 0 0 0 1px rgba(0,0,0,.06)`);
     // motion blur proporcional à velocidade
@@ -93,12 +86,12 @@ scene({
     const psc = K(t, [[28.1, 1], [29.2, 1, E.inOutSine], [30.8, 1.07, E.inOutSine]]);
     tf(this.phone, `translateX(${(1 - pin) * 900}px) translateY(0px) rotateY(${pry}deg) rotateX(3deg) rotateZ(${(1 - pin) * 3}deg) scale(${psc})`);
     op(this.phone, inv(28.1, 28.3, t));
-    op(this.slotCard, t >= 29.15 ? 1 : 0);
+    op(this.slotCard, 0);
     tf(this.slotCard, `scale(${(400 / 600) * (1 + Math.exp(-(t - 29.15) * 8) * .04 * (t > 29.15))})`);
     // notificação cai com mola
-    const n = E.spring(inv(29.15, 29.8, t));
+    const n = E.outExpo(inv(28.95, 29.6, t));
     const notif = this.phone.querySelector('#notif');
-    tf(notif, `translateY(${(1 - n) * -200}px) scale(${lerp(.8, 1, n)})`); op(notif, inv(29.15, 29.3, t));
+    tf(notif, `scale(${lerp(1.04, 1, n)})`); op(notif, inv(28.95, 29.25, t));
     
     // explosão sutil de chegada
     

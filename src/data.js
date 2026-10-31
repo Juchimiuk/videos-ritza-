@@ -32,5 +32,5 @@ const DATA = {
   recorde5k: { tempo: '27:00', ritmo: '5:24/km', data: '25 out' },
   // projeção (Riegel, expoente 1,06) a partir de 5 km em 27:00 -> 15 km = 1:26:30 (5:46/km)
   prova: { nome: 'São Silvestre', data: '31 dez', km: 15, antes: 5350, depois: 5190 },
-  treino: { nome: 'Intervalado 6 × 800 m', dia: 'Qui, 29 out', aluno: 'Guilherme Rocha Almeida' },
+  treino: { nome: 'Intervalado 6 × 800 m', dia: 'Qui, 29 out', aluno: 'Henrique Juchimiuk', ini: 'HJ' },
 };
