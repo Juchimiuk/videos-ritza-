@@ -5,7 +5,7 @@ scene({
     const el = this.el = h(`<div class="scene" id="s6"></div>`);
     // celular
     this.phoneWrap = h(`<div style="position:absolute;left:0;top:0;width:1080px;height:1920px;perspective:2200px;perspective-origin:540px 800px"></div>`);
-    this.phone = h(`<div class="phone" style="left:280px;top:296px;transform-origin:50% 50%">
+    this.phone = h(`<div class="phone" style="left:250px;top:190px;transform-origin:50% 50%">
       <div class="pscreen">
         <img src="../assets/app_aluno.png" style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;object-position:50% 0">
         <div style="position:absolute;left:50%;top:12px;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:#000"></div>
@@ -43,8 +43,8 @@ scene({
     const go = E.inOutCubic(inv(27.15, 28.35, t));
     const land = E.inOutCubic(inv(28.55, 29.15, t));
     // alvo: slot do celular (phone left 305+16+19, top 330+16+190)
-    const slot = { x: 310, y: 370, s: 460 / 600 }; // banner de notificação no topo da tela
-    const mid = { x: 540 - 300 * 1.4, y: 800 - 295 * 1.4, s: 1.4 };
+    const slot = { x: 280, y: 264, s: 520 / 600 }; // banner de notificação no topo da tela
+    const mid = { x: 540 - 300 * 1.45, y: 860 - 295 * 1.45, s: 1.45 };
     let x = lerp(r0.x, mid.x, go), y = lerp(r0.y, mid.y, go) - Math.sin(go * Math.PI) * 120, s = lerp(r0.s * lerp(1, 1.12, lift), mid.s, go);
     x = lerp(x, slot.x, land); y = lerp(y, slot.y, land) - Math.sin(land * Math.PI) * 60; s = lerp(s, slot.s, land);
     const rot = Math.sin(go * Math.PI) * -2;

@@ -15,10 +15,10 @@ scene({
     this.world = h(`<div class="layer" style="transform-origin:540px 820px;transform-style:preserve-3d"></div>`);
     this.cam.appendChild(this.world);
     const d = DATA;
-    this.chip = h(`<div class="chip" style="position:absolute;left:32px;top:272px;background:#0A0A0A;color:#fff"><span class="dot" style="background:#21D193"></span>HOJE · ${d.hoje}</div>`);
-    this.title = h(`<div style="position:absolute;left:30px;top:346px;font-size:110px;font-weight:800;letter-spacing:-.045em;color:#0A0A0A;line-height:1">Quem treinou</div>`);
-    this.sub = h(`<div style="position:absolute;left:34px;top:488px;font-size:32px;font-weight:500;color:#6B6F76"><b id="s2n" style="color:#0A0A0A;font-weight:700">0</b> de ${d.ativos} alunos já treinaram</div>`);
-    this.ring = h(`<svg style="position:absolute;left:840px;top:292px;overflow:visible" width="208" height="208" viewBox="0 0 184 184">
+    this.chip = h(`<div class="chip" style="position:absolute;left:32px;top:172px;background:#0A0A0A;color:#fff"><span class="dot" style="background:#21D193"></span>HOJE · ${d.hoje}</div>`);
+    this.title = h(`<div style="position:absolute;left:30px;top:262px;font-size:116px;font-weight:800;letter-spacing:-.045em;color:#0A0A0A;line-height:1">Quem treinou</div>`);
+    this.sub = h(`<div style="position:absolute;left:34px;top:412px;font-size:34px;font-weight:500;color:#6B6F76"><b id="s2n" style="color:#0A0A0A;font-weight:700">0</b> de ${d.ativos} alunos já treinaram</div>`);
+    this.ring = h(`<svg style="position:absolute;left:840px;top:196px;overflow:visible" width="208" height="208" viewBox="0 0 184 184">
       <circle cx="92" cy="92" r="76" fill="none" stroke="#ECEDEF" stroke-width="8"/>
       <circle id="s2arc" cx="92" cy="92" r="76" fill="none" stroke="#21D193" stroke-width="8" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" transform="rotate(-90 92 92)"/>
       <defs><linearGradient id="s2g" x1="0" x2="1"><stop offset="0" stop-color="#21D193"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs>
@@ -28,7 +28,7 @@ scene({
     this.rows = this.lista.map((a, i) => {
       const c = esfColor(a.esf);
       const segs = Array.from({ length: 10 }, () => '<i></i>').join('');
-      const r = h(`<div class="row glass light" style="top:${624 + i * 152}px">
+      const r = h(`<div class="row glass light" style="top:${540 + i * 196}px">
         <div class="avatar" style="width:84px;height:84px;font-size:29px;background:${a.ok ? '#F1F2F3' : '#1C1D1F'};color:${a.ok ? '#0A0A0A' : '#fff'}">${a.ini}</div>
         <div style="min-width:0"><div class="name">${a.nome}</div>
           <div class="st" style="${a.ok ? '' : 'color:#0A0A0A;font-weight:600'}"><span class="dot" style="${a.ok ? 'background:#21D193' : 'border:2.5px solid #0A0A0A'}"></span>${a.st}</div></div>
@@ -41,7 +41,7 @@ scene({
     });
     // anel pulsante e brilho laranja do Guilherme
     const g = this.rows[3];
-    this.gRing = h(`<div style="position:absolute;left:40px;top:24px;width:84px;height:84px;border-radius:50%;border:2px solid #21D193"></div>`);
+    this.gRing = h(`<div style="position:absolute;left:40px;top:33px;width:84px;height:84px;border-radius:50%;border:2px solid #21D193"></div>`);
     this.gRing2 = this.gRing.cloneNode();
     g.append(this.gRing, this.gRing2);
     $('#scenes').appendChild(el);
@@ -100,8 +100,8 @@ scene({
     const rx = K(t, [[2.5, 6], [4.5, 2, E.outCubic], [6.3, 1, E.inOutSine], [7.4, 0]]);
     const ry = K(t, [[2.5, -3], [4.5, 1, E.outCubic], [6.3, -1, E.inOutSine], [7.4, 2]]);
     const sc = lerp(.62, 1, zin) * K(t, [[3, 1], [6.3, 1.04, E.inOutSine], [7.4, 1.3, E.inOutCubic], [8.1, 1.36, E.outCubic]]);
-    const fxp = lerp(540, 400, zk), fyp = lerp(820, 1146, zk);
-    const dx = lerp(0, 520 - 400, zk), dy = lerp(0, 820 - 1146, zk);
+    const fxp = lerp(540, 400, zk), fyp = lerp(820, 1203, zk);
+    const dx = lerp(0, 520 - 400, zk), dy = lerp(0, 820 - 1203, zk);
     css(this.world, 'transformOrigin', `${fxp}px ${fyp}px`);
     tf(this.world, `perspective(1800px) translate3d(${dx}px, ${dy}px, 0) scale(${sc}) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg)`);
     // profundidade de campo: desfoca os outros cards no zoom

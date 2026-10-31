@@ -6,7 +6,7 @@ scene({
     // linhas finas de pista (eco discreto das faixas do logo)
     this.lines = [];
     for (let i = 0; i < 3; i++) {
-      const s = h(`<div style="position:absolute;left:-200px;top:${1180 + i * 26}px;width:1480px;height:2px;background:linear-gradient(90deg,rgba(33,209,147,0),rgba(33,209,147,${.55 - i * .15}) 50%,rgba(33,209,147,0));transform-origin:0 50%"></div>`);
+      const s = h(`<div style="position:absolute;left:-200px;top:${1320 + i * 26}px;width:1480px;height:2px;background:linear-gradient(90deg,rgba(33,209,147,0),rgba(33,209,147,${.55 - i * .15}) 50%,rgba(33,209,147,0));transform-origin:0 50%"></div>`);
       el.appendChild(s); this.lines.push(s);
     }
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`); el.appendChild(this.cam);
@@ -15,18 +15,18 @@ scene({
       const spans = words.map(w => { const m = h(`<span style="display:inline-block;overflow:hidden;vertical-align:top;padding:0 .08em .24em;margin-bottom:-.16em"><span style="display:inline-block">${w}</span></span>`); line.appendChild(m); return m.firstElementChild; });
       return { line, spans };
     };
-    this.kicker = h(`<div style="position:absolute;left:0;right:0;top:366px;text-align:center;font-size:26px;font-weight:600;letter-spacing:.32em;color:rgba(255,255,255,.5)">PARA DONOS DE ASSESSORIA</div>`);
-    this.A = h(`<div class="layer" style="transform-origin:540px 560px"></div>`);
-    const a1 = L(438, 152, ['Quem', 'treinou']);
-    const a2 = L(604, 152, ['hoje?']);
+    this.kicker = h(`<div style="position:absolute;left:0;right:0;top:286px;text-align:center;font-size:26px;font-weight:600;letter-spacing:.32em;color:rgba(255,255,255,.5)">PARA DONOS DE ASSESSORIA</div>`);
+    this.A = h(`<div class="layer" style="transform-origin:540px 500px"></div>`);
+    const a1 = L(378, 152, ['Quem', 'treinou']);
+    const a2 = L(560, 152, ['hoje?']);
     this.A.append(this.kicker, a1.line, a2.line);
     this.B = h(`<div class="layer"></div>`);
     const b1 = L(800, 188, ['Agora']);
-    const b2 = L(990, 188, ['você', 'sabe.']);
+    const b2 = L(1010, 188, ['você', 'sabe.']);
     b2.spans[0].innerHTML = 'v<span id="s1o">o</span>cê';
     b2.spans[1].style.color = '#21D193';
     this.B.append(b1.line, b2.line);
-    this.rule = h(`<div style="position:absolute;left:340px;top:1200px;width:400px;height:3px;background:#21D193;transform-origin:50% 50%"></div>`);
+    this.rule = h(`<div style="position:absolute;left:340px;top:1240px;width:400px;height:3px;background:#21D193;transform-origin:50% 50%"></div>`);
     this.B.appendChild(this.rule);
     this.cam.append(this.A, this.B);
     this.words = [...a1.spans, ...a2.spans];

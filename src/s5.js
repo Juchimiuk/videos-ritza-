@@ -20,8 +20,8 @@ scene({
     const D = DATA;
     const el = this.el = h(`<div class="scene" id="s5"></div>`);
     // reflexo de piso + sombra realista
-    this.shadow = h(`<div style="position:absolute;left:90px;top:1000px;width:900px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.75),rgba(0,0,0,0));filter:blur(18px)"></div>`);
-    this.floorGlow = h(`<div style="position:absolute;left:-100px;top:900px;width:1280px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(33,209,147,.10),rgba(33,209,147,0))"></div>`);
+    this.shadow = h(`<div style="position:absolute;left:90px;top:1080px;width:900px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.75),rgba(0,0,0,0));filter:blur(18px)"></div>`);
+    this.floorGlow = h(`<div style="position:absolute;left:-100px;top:980px;width:1280px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(33,209,147,.10),rgba(33,209,147,0))"></div>`);
     el.append(this.floorGlow, this.shadow);
     const world = h(`<div id="lapWorld"></div>`);
     this.lap = h(`<div id="lap"></div>`);

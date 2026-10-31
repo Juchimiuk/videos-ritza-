@@ -12,20 +12,20 @@ scene({
     el.appendChild(this.stripes);
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`);
     el.appendChild(this.cam);
-    this.icon = h(`<div style="position:absolute;left:350px;top:280px;width:380px;height:380px;border-radius:98px;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)">
+    this.icon = h(`<div style="position:absolute;left:350px;top:190px;width:380px;height:380px;border-radius:98px;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)">
       <img src="../assets/logo_hd.png" style="width:244px">
       <div id="s7shine" style="position:absolute;top:-80px;left:0;width:90px;height:480px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0))"></div></div>`);
-    this.word = h(`<div style="position:absolute;left:0;right:0;top:716px;text-align:center;font-size:156px;font-weight:800;letter-spacing:-.055em;line-height:1;color:#0A0A0A">Ritza</div>`);
-    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:910px;text-align:center;font-size:70px;font-weight:600;letter-spacing:-.035em;line-height:1.12;color:#0A0A0A"></div>`);
+    this.word = h(`<div style="position:absolute;left:0;right:0;top:670px;text-align:center;font-size:164px;font-weight:800;letter-spacing:-.055em;line-height:1;color:#0A0A0A">Ritza</div>`);
+    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:900px;text-align:center;font-size:74px;font-weight:600;letter-spacing:-.035em;line-height:1.12;color:#0A0A0A"></div>`);
     this.hw = ['O', 'app', 'da', 'sua', 'assessoria', '<br>', 'de', 'corrida'].map(w => {
       if (w === '<br>') { this.head.appendChild(document.createElement('br')); return null; }
       const s = h(`<span style="display:inline-block;margin:0 .14em">${w}</span>`); this.head.appendChild(s); return s;
     }).filter(Boolean);
-    this.btn = h(`<div style="position:absolute;left:32px;top:1176px;width:1016px;height:156px;border-radius:24px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:600;letter-spacing:-.015em;overflow:hidden;box-shadow:0 30px 60px -26px rgba(0,0,0,.6)">
+    this.btn = h(`<div style="position:absolute;left:32px;top:1210px;width:1016px;height:164px;border-radius:24px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:600;letter-spacing:-.015em;overflow:hidden;box-shadow:0 30px 60px -26px rgba(0,0,0,.6)">
       <svg width="40" height="40" viewBox="0 0 44 44"><rect x="5" y="9" width="34" height="30" rx="6" fill="none" stroke="#21D193" stroke-width="3"/><path d="M5 18 H39 M14 4 V13 M30 4 V13" stroke="#21D193" stroke-width="3" stroke-linecap="round"/></svg>
       Agendar demonstração <span style="color:#21D193">· 20 min</span>
       <div id="s7bshine" style="position:absolute;top:-20px;left:0;width:120px;height:180px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.10),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
-    this.url = h(`<div style="position:absolute;left:0;right:0;top:1384px;text-align:center;font-size:54px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br
+    this.url = h(`<div style="position:absolute;left:0;right:0;top:1446px;text-align:center;font-size:56px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br
       <svg style="position:absolute;left:330px;top:76px;overflow:visible" width="420" height="20"><path d="M4 10 C 120 2, 300 2, 416 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
     this.cam.append(this.icon, this.word, this.head, this.btn, this.url);
     $('#s7host').appendChild(el);
@@ -33,8 +33,8 @@ scene({
   update(t) {
     // wipe circular verde a partir da notificação do celular
     const w = E.inOutCubic(inv(30.55, 31.15, t));
-    css($('#bgGreen'), 'clipPath', `circle(${w * 2300}px at 540px 470px)`);
-    css(this.el, 'clipPath', `circle(${w * 2300}px at 540px 470px)`);
+    css($('#bgGreen'), 'clipPath', `circle(${w * 2300}px at 540px 330px)`);
+    css(this.el, 'clipPath', `circle(${w * 2300}px at 540px 330px)`);
     this.blobs.forEach((b, i) => tf(b, `translate(${200 + Math.sin(t * .7 + i * 2) * 400 - 300}px, ${300 + i * 330 + Math.cos(t * .6 + i) * 200}px) scale(1)`));
     tf(this.stripes, `translate(${(t - 31) * -70}px, ${(t - 31) * 40}px)`);
     // logo, marca, título, botão, site — entram nas batidas

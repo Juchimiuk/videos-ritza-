@@ -55,7 +55,7 @@ scene({
     this.fog = h(`<div class="layer" style="background:linear-gradient(180deg,#070707 0%,#070707 13%,rgba(7,7,7,0) 34%,rgba(7,7,7,0) 62%,rgba(7,7,7,.88) 80%)"></div>`);
     el.appendChild(this.fog);
     // corredor (fixo no foco da câmera)
-    this.runner = h(`<div style="position:absolute;left:540px;top:860px;width:0;height:0">
+    this.runner = h(`<div style="position:absolute;left:540px;top:880px;width:0;height:0">
       <div class="rp" style="position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:2px solid #21D193"></div>
       <div class="rp" style="position:absolute;left:-60px;top:-60px;width:120px;height:120px;border-radius:50%;border:2px solid #21D193"></div>
       <div style="position:absolute;left:-22px;top:-22px;width:44px;height:44px;border-radius:50%;background:#21D193;border:6px solid #fff;box-shadow:0 0 30px 4px rgba(33,209,147,.45)"></div>
@@ -63,10 +63,10 @@ scene({
     </div>`);
     el.appendChild(this.runner);
     // HUD superior
-    this.chip = h(`<div class="chip" style="position:absolute;left:32px;top:264px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff">
+    this.chip = h(`<div class="chip" style="position:absolute;left:32px;top:168px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff">
       <svg width="30" height="30" viewBox="0 0 30 30"><circle id="s3spin" cx="15" cy="15" r="11" fill="none" stroke="#21D193" stroke-width="3" stroke-dasharray="48 100" stroke-linecap="round"/><path id="s3ok" d="M8 15.5 l5 5 l9 -11" fill="none" stroke="#21D193" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg>
       <span id="s3chipT">SINCRONIZANDO COM STRAVA</span></div>`);
-    this.top = h(`<div class="glass" style="left:32px;top:340px;width:1016px;height:150px;display:flex;align-items:center;padding:0 40px;gap:26px">
+    this.top = h(`<div class="glass" style="left:32px;top:240px;width:1016px;height:150px;display:flex;align-items:center;padding:0 40px;gap:26px">
       <div class="avatar" style="width:74px;height:74px;font-size:26px;background:#21D193;color:#0A0A0A">MC</div>
       <div><div style="font-size:32px;font-weight:700">Mariana Costa Silva</div><div style="font-size:22px;font-weight:500;color:rgba(255,255,255,.55);margin-top:4px">Corrida · ${DATA.corrida.local}</div></div>
       <div style="margin-left:auto;text-align:right"><div style="font-size:16px;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.5)">TEMPO</div><div id="s3time" style="font-size:50px;font-weight:700;letter-spacing:-.02em;line-height:1.05">0:00</div></div></div>`);
@@ -78,7 +78,7 @@ scene({
     this.sHr = stat(720, 'FREQ. CARDÍACA', 's3h', 'bpm', '#FFFFFF', `<svg width="264" height="44" style="margin-top:10px;overflow:visible"><path id="s3ecg" d="M0 22 L40 22 L52 22 L60 6 L70 40 L78 16 L86 22 L130 22 L142 22 L150 6 L160 40 L168 16 L176 22 L220 22 L232 22 L240 6 L250 40" fill="none" stroke="#21D193" stroke-width="3" stroke-linejoin="round" pathLength="1" stroke-dasharray=".35 .65"/></svg>`);
     el.append(this.chip, this.top, this.sDist, this.sPace, this.sHr);
     // card da atividade (match cut da rota) + ícone do Ritza
-    this.card = h(`<div class="glass" style="left:150px;top:600px;width:780px;height:560px;padding:0;overflow:hidden;transform-origin:50% 50%">
+    this.card = h(`<div class="glass" style="left:150px;top:620px;width:780px;height:560px;padding:0;overflow:hidden;transform-origin:50% 50%">
       <div style="position:absolute;left:0;right:0;top:0;height:330px;background:radial-gradient(ellipse at 50% 60%,rgba(33,209,147,.08),rgba(0,0,0,0) 70%)"></div>
       <svg style="position:absolute;left:240px;top:24px" width="300" height="322" viewBox="360 445 1240 1330"><path d="${ROUTE}" fill="none" stroke="#21D193" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <div style="position:absolute;left:36px;top:352px;right:36px">
@@ -87,12 +87,12 @@ scene({
         <div style="display:flex;justify-content:space-between;margin-top:22px;font-size:34px;font-weight:700;letter-spacing:-.02em">
           <span style="color:#21D193">8,5 km</span><span>46:45</span><span>5:30/km</span><span>152 bpm</span></div>
       </div></div>`);
-    this.icon = h(`<div style="position:absolute;left:440px;top:330px;width:200px;height:200px;border-radius:52px;background:linear-gradient(150deg,#1A1B1D,#070707);border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 60px -20px rgba(33,209,147,.35),inset 0 1px 0 rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center">
+    this.icon = h(`<div style="position:absolute;left:440px;top:260px;width:200px;height:200px;border-radius:52px;background:linear-gradient(150deg,#1A1B1D,#070707);border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 60px -20px rgba(0,0,0,.8),0 0 60px -20px rgba(33,209,147,.35),inset 0 1px 0 rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center">
       <img src="../assets/logo_hd.png" style="width:128px;height:auto">
       <div id="s3check" style="position:absolute;right:-22px;top:-22px;width:76px;height:76px;border-radius:50%;background:#21D193;border:6px solid #070707;display:flex;align-items:center;justify-content:center">
         <svg width="40" height="40" viewBox="0 0 40 40"><path id="s3chk" d="M9 21 l8 8 l15 -17" fill="none" stroke="#070707" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div></div>`);
-    this.iconLbl = h(`<div style="position:absolute;left:0;right:0;top:572px;text-align:center;font-size:42px;font-weight:700;letter-spacing:-.025em">Treino importado</div>`);
-    this.iconSub = h(`<div style="position:absolute;left:0;right:0;top:636px;text-align:center;font-size:26px;font-weight:500;color:rgba(255,255,255,.55)">8,5 km · 46:45 · 5:30/km · esforço 7</div>`);
+    this.iconLbl = h(`<div style="position:absolute;left:0;right:0;top:504px;text-align:center;font-size:42px;font-weight:700;letter-spacing:-.025em">Treino importado</div>`);
+    this.iconSub = h(`<div style="position:absolute;left:0;right:0;top:568px;text-align:center;font-size:26px;font-weight:500;color:rgba(255,255,255,.55)">8,5 km · 46:45 · 5:30/km · esforço 7</div>`);
     el.append(this.card, this.icon, this.iconLbl, this.iconSub);
     $('#scenes').appendChild(el);
     // geometria da rota
@@ -131,7 +131,7 @@ scene({
     const rz = (-(hd + 90) * .3 + 18) * (1 - m);
     const sc = lerp(K(t, [[7.6, .72], [9.0, .98, E.outCubic], [12.95, 1.06]]), 300 / RBOX.w * 1.0, m);
     const cx = lerp(pt.x, RBOX.cx, m), cy = lerp(pt.y, RBOX.cy, m);
-    css(this.wrap, 'top', `${lerp(860, 785, m)}px`);
+    css(this.wrap, 'top', `${lerp(880, 805, m)}px`);
     tf(this.plane, `rotateX(${tilt}deg) rotateZ(${rz}deg) scale(${sc}) translate(${-cx}px, ${-cy}px)`);
     ['routeGlow', 'routeMain'].forEach(id => css(this.plane.querySelector('#' + id), 'strokeDashoffset', String(this.L * (1 - Math.max(p, .0001)))));
     css(this.plane.querySelector('#routeMain'), 'strokeWidth', String(lerp(18, 44, m)));
@@ -170,10 +170,10 @@ scene({
     const cIn = E.outCubic(inv(13.3, 13.75, t));
     const fly = inv(13.75, 14.42, t), fe = E.inOutCubic(fly);
     const bx = (1 - fe) ** 2 * 540 + 2 * (1 - fe) * fe * 980 + fe * fe * 540;
-    const by = (1 - fe) ** 2 * 880 + 2 * (1 - fe) * fe * 620 + fe * fe * 430;
+    const by = (1 - fe) ** 2 * 900 + 2 * (1 - fe) * fe * 560 + fe * fe * 360;
     const csc = lerp(1, .07, E.inCubic(fly)) * lerp(1.06, 1, cIn);
     op(this.card, cIn * (1 - P(t, 14.3, 14.42)));
-    tf(this.card, `translate(${bx - 540}px, ${by - 880}px) scale(${csc}) rotate(${-3 * fe}deg) rotateY(${Math.sin(fe * Math.PI) * 6}deg)`);
+    tf(this.card, `translate(${bx - 540}px, ${by - 900}px) scale(${csc}) rotate(${-3 * fe}deg) rotateY(${Math.sin(fe * Math.PI) * 6}deg)`);
     fl(this.card, fly > 0 && fly < 1 ? `blur(${Math.sin(fly * Math.PI) * 3}px)` : 'none');
     op(this.plane, 1 - P(t, 13.55, 13.75));
     // rastro de partículas no voo
@@ -182,7 +182,7 @@ scene({
       for (let i = 0; i < 14; i++) {
         const lag = i * .012, f2 = E.inOutCubic(clamp(fly - lag));
         const x = (1 - f2) ** 2 * 540 + 2 * (1 - f2) * f2 * 980 + f2 * f2 * 540 + (rr() - .5) * 6;
-        const y = (1 - f2) ** 2 * 880 + 2 * (1 - f2) * f2 * 620 + f2 * f2 * 430 + (rr() - .5) * 6;
+        const y = (1 - f2) ** 2 * 900 + 2 * (1 - f2) * f2 * 560 + f2 * f2 * 360 + (rr() - .5) * 6;
         ctx.globalAlpha = (1 - i / 14) * .5; ctx.fillStyle = '#21D193';
         ctx.beginPath(); ctx.arc(x, y, 4 * (1 - i / 14) + 1.5, 0, 7); ctx.fill();
       }
@@ -199,7 +199,7 @@ scene({
     css($('#s3chk'), 'strokeDashoffset', String(1 - P(t, 14.55, 14.85, E.outCubic)));
     popIn(this.iconLbl, t, 14.5, { dy: 50 }); popIn(this.iconSub, t, 14.62, { dy: 40 });
     if (t > 14.68) { op(this.iconLbl, 1 - zt * 3); op(this.iconSub, 1 - zt * 3); }
-    burst(ctx, t, 14.42, 540, 430, { n: 90, seed: 11, speed: 1100 });
+    burst(ctx, t, 14.42, 540, 360, { n: 90, seed: 11, speed: 1100 });
     // whip-pan de entrada (da direita) + saída por zoom-through no ícone
     const wp = E.outQuart(inv(7.6, 8.15, t));
     if (t < 8.15) { tf(this.el, `translateX(${1400 * (1 - wp)}px)`); mblur(this.el, (1 - wp) * 80); }

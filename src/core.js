@@ -1,6 +1,6 @@
 // ===== Ritza Reels — núcleo: easing, keyframes, utilidades, câmera =====
 const W = 1080, H = 1920, FPS = 60, BEAT = 0.5; // 120 BPM
-const SAFE_TOP = 250, SAFE_BOTTOM = H - 380;
+const SAFE_TOP = 150, SAFE_BOTTOM = H - 260;
 
 const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 const lerp = (a, b, p) => a + (b - a) * p;
