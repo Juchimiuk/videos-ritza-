@@ -9,11 +9,12 @@ const DATA = {
   constancia14: 82,           // % média de treinos cumpridos nos últimos 14 dias
   constanciaDias: [74, 79, 81, 76, 85, 88, 70, 83, 86, 80, 84, 89, 87, 85], // média = 82
   convites: 3,
+  emRisco: 2,                 // alunos com 5+ dias sem treinar (depois que o Henrique voltou)
   alunos: [
     { nome: 'Mariana Costa Silva', ini: 'MC', cor: ['#1C1D1F', '#2C2D30'], ok: true, st: 'Treinou · 8,5 km · 5:30/km', esf: 7 },
     { nome: 'Lucas Oliveira Santos', ini: 'LO', cor: ['#1C1D1F', '#2C2D30'], ok: true, st: 'Treinou · Fartlek 8 km · 5:05/km', esf: 8 },
     { nome: 'Juliana Mendes Pereira', ini: 'JM', cor: ['#1C1D1F', '#2C2D30'], ok: true, st: 'Treinou · 10 km · 5:50/km', esf: 6 },
-    { nome: 'Guilherme Rocha Almeida', ini: 'GR', cor: ['#1C1D1F', '#2C2D30'], ok: false, st: 'Ainda não treinou · Rodagem 6 km', esf: null },
+    { nome: 'Henrique Juchimiuk', ini: 'HJ', cor: ['#1C1D1F', '#2C2D30'], ok: false, st: 'Há 5 dias sem treinar', esf: null },
     { nome: 'Ana Beatriz Ferreira', ini: 'AB', cor: ['#1C1D1F', '#2C2D30'], ok: true, st: 'Treinou · Regenerativo 5 km · 6:40/km', esf: 3 },
     { nome: 'Pedro Henrique Lima', ini: 'PH', cor: ['#1C1D1F', '#2C2D30'], ok: true, st: 'Treinou · Tiros 10 × 400 m', esf: 9 },
   ],

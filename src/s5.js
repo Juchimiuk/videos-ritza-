@@ -15,7 +15,14 @@ function workoutHTML() {
 }
 
 scene({
-  from: 20.85, to: 28.6,
+  from: 18.65, to: 22.45,
+  // roteiro novo: laptop já entra aberto; KPIs, push-in e listas em ~3,5 s
+  map: [[18.65, 22.15], [19.2, 22.5], [22.45, 25.0]],
+  post(t) {
+    const zin = E.outCubic(inv(18.65, 19.2, t));
+    op(this.el, inv(18.65, 18.9, t)); tf(this.el, `scale(${lerp(.9, 1, zin)})`);
+    fl(this.el, t < 19.2 ? `blur(${(1 - zin) * 14}px)` : 'none');
+  },
   build() {
     const D = DATA;
     const el = this.el = h(`<div class="scene" id="s5"></div>`);
@@ -58,7 +65,7 @@ scene({
           <div class="kpi" style="left:342px"><div class="k">TREINARAM HOJE</div><div class="v" style="color:#21D193"><span id="k2">0</span><span style="font-size:22px;color:#8A8E95;font-weight:500">/24</span></div><div class="s">71% da equipe</div>
             <svg style="position:absolute;right:12px;top:12px" width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#26282B" stroke-width="4"/><circle id="k2r" cx="17" cy="17" r="13" fill="none" stroke="#21D193" stroke-width="4" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" transform="rotate(-90 17 17)" stroke-linecap="round"/></svg></div>
           <div class="kpi" style="left:538px"><div class="k">CONSTÂNCIA 14 DIAS</div><div class="v" style="color:#fff"><span id="k3">0</span>%</div><div id="k3b" style="display:flex;gap:3px;align-items:flex-end;height:42px;margin-top:4px">${bars14}</div></div>
-          <div class="kpi" style="left:734px"><div class="k">CONVITES PENDENTES</div><div class="v" id="k4">0</div><div class="s">2 enviados ontem</div></div>
+          <div class="kpi" style="left:734px;border-color:rgba(33,209,147,.45)"><div class="k">EM RISCO</div><div class="v" id="k4" style="color:#21D193">0</div><div class="s">5+ dias sem treinar</div></div>
           <div class="dpanel" style="position:absolute;left:146px;top:264px;width:470px;height:310px;border-radius:14px;background:#121314;border:1px solid rgba(255,255,255,.07);padding:14px 18px">
             <div style="font-size:13px;font-weight:600;letter-spacing:.12em;color:#8A8E95;display:flex">QUEM TREINOU HOJE<span style="margin-left:auto;color:#21D193">17</span></div>
             <div style="margin-top:6px">${listRows}</div></div>
@@ -122,7 +129,7 @@ scene({
     css($('#k2r'), 'strokeDashoffset', String(100 - 71 * P(t, 22.75, 23.6, E.outCubic)));
     txt($('#k3'), String(Math.round(D.constancia14 * P(t, 23.0, 23.9, E.outCubic))));
     $$('#k3b i').forEach((b, i) => tf(b, `scaleY(${E.spring(inv(23.0 + i * .04, 23.6 + i * .04, t))})`));
-    txt($('#k4'), String(Math.round(D.convites * P(t, 23.25, 23.8, E.outCubic))));
+    txt($('#k4'), String(Math.round(D.emRisco * P(t, 23.25, 23.8, E.outCubic))));
     // cursor clica em "Lançar treino" (26,25) e depois em "Lançar para o aluno" (26,9)
     const [cx, cy] = this.cursorAt(t);
     op($('#cursor'), P(t, 25.5, 25.7) * (1 - P(t, 27.0, 27.15)));

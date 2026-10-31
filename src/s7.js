@@ -1,6 +1,7 @@
 // ===== Cena 7 — CTA (31–34 s) =====
 scene({
-  from: 30.55, to: 34.1,
+  from: 21.95, to: 26.05,
+  map: [[21.95, 30.55], [26.1, 34.7]],
   build() {
     const el = this.el = h(`<div class="scene" id="s7" style="color:#07111F"></div>`);
     this.blobs = [];
@@ -25,16 +26,16 @@ scene({
       <svg width="40" height="40" viewBox="0 0 44 44"><rect x="5" y="9" width="34" height="30" rx="6" fill="none" stroke="#21D193" stroke-width="3"/><path d="M5 18 H39 M14 4 V13 M30 4 V13" stroke="#21D193" stroke-width="3" stroke-linecap="round"/></svg>
       Agendar demonstração <span style="color:#21D193">· 20 min</span>
       <div id="s7bshine" style="position:absolute;top:-20px;left:0;width:120px;height:180px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.10),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
-    this.url = h(`<div style="position:absolute;left:0;right:0;top:1446px;text-align:center;font-size:56px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br
-      <svg style="position:absolute;left:330px;top:76px;overflow:visible" width="420" height="20"><path d="M4 10 C 120 2, 300 2, 416 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
+    this.url = h(`<div style="position:absolute;left:0;right:0;top:1446px;text-align:center;font-size:56px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br <span style="font-weight:500;opacity:.7">· link na bio</span>
+      <svg style="position:absolute;left:178px;top:76px;overflow:visible" width="340" height="20"><path d="M4 10 C 100 2, 240 2, 336 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
     this.cam.append(this.icon, this.word, this.head, this.btn, this.url);
     $('#s7host').appendChild(el);
   },
   update(t) {
     // wipe circular verde a partir da notificação do celular
     const w = E.inOutCubic(inv(30.55, 31.15, t));
-    css($('#bgGreen'), 'clipPath', `circle(${w * 2300}px at 540px 330px)`);
-    css(this.el, 'clipPath', `circle(${w * 2300}px at 540px 330px)`);
+    css($('#bgGreen'), 'clipPath', `circle(${w * 2300}px at 540px 820px)`);
+    css(this.el, 'clipPath', `circle(${w * 2300}px at 540px 820px)`);
     this.blobs.forEach((b, i) => tf(b, `translate(${200 + Math.sin(t * .7 + i * 2) * 400 - 300}px, ${300 + i * 330 + Math.cos(t * .6 + i) * 200}px) scale(1)`));
     tf(this.stripes, `translate(${(t - 31) * -70}px, ${(t - 31) * 40}px)`);
     // logo, marca, título, botão, site — entram nas batidas

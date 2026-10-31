@@ -1,6 +1,6 @@
 # Ritza: vídeo Reels (1080×1920, 60 fps, H.264)
 
-Animação de ~34 s (paleta restrita: verde #21D193, branco e preto) do Ritza, o app e web para assessorias de corrida. É montada como uma timeline HTML/CSS determinística, renderizada quadro a quadro com Playwright (Chromium) e codificada com ffmpeg.
+Animação de 26 s (paleta restrita: verde #21D193, branco e preto) do Ritza, o app e web para assessorias de corrida. É montada como uma timeline HTML/CSS determinística, renderizada quadro a quadro com Playwright (Chromium) e codificada com ffmpeg.
 
 - `vendor/motion-12.23.12.js`: biblioteca [Motion](https://motion.dev) (MIT). Todas as molas (`Motion.spring`, física real) e curvas de easing (`Motion.cubicBezier`, `easeInOut`) vêm dela, amostradas de forma determinística por quadro.
 - `src/`: a animação. `core.js` tem easing, molas e keyframes; `data.js` tem os dados consistentes entre as cenas; `s1.js` a `s7.js` são as cenas.

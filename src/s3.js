@@ -2,7 +2,13 @@
 const ROUTE = 'M 1450 1650 C 1560 1400, 1580 1100, 1500 850 C 1430 640, 1200 470, 950 450 C 700 430, 450 560, 380 800 C 320 1000, 420 1150, 560 1180 C 700 1210, 760 1050, 880 980 C 1000 910, 1150 980, 1180 1150 C 1210 1330, 1080 1500, 900 1600 C 720 1700, 520 1760, 430 1640 C 360 1540, 400 1420, 520 1400 C 700 1380, 900 1520, 1100 1630 C 1250 1715, 1380 1720, 1440 1660';
 const RBOX = { cx: 980, cy: 1110, w: 1240, h: 1330 };
 scene({
-  from: 7.55, to: 15.2,
+  from: 12.55, to: 16.05,
+  // roteiro novo: corrida comprimida em ~2,2 s, sem a sequência card → ícone
+  map: [[12.55, 7.55], [13.1, 8.15], [15.3, 12.85], [16.1, 12.9]],
+  post(t) {
+    const wp = E.inQuart(inv(15.6, 16.05, t));
+    if (t > 15.6) { tf(this.el, `translateX(${-1400 * wp}px)`); mblur(this.el, Math.sin(Math.PI * Math.min(1, wp * 1.1)) * 70 + wp * 20); }
+  },
   build() {
     const el = this.el = h(`<div class="scene" id="s3"></div>`);
     // ---------- mapa (SVG) ----------

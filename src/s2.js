@@ -1,7 +1,7 @@
-// ===== Cena 2 — Quem treinou (3–8 s) =====
+// ===== Cena 2 — Quem treinou + aluno em risco (3–6,5 s) =====
 const esfColor = n => n == null ? '#0A0A0A' : '#21D193';
 scene({
-  from: 2.5, to: 8.1,
+  from: 2.5, to: 7.05,
   build() {
     const el = this.el = h(`<div class="scene" id="s2"></div>`);
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`);
@@ -33,7 +33,7 @@ scene({
         <div style="min-width:0"><div class="name">${a.nome}</div>
           <div class="st" style="${a.ok ? '' : 'color:#0A0A0A;font-weight:600'}"><span class="dot" style="${a.ok ? 'background:#21D193' : 'border:2.5px solid #0A0A0A'}"></span>${a.st}</div></div>
         <div class="esf">${a.esf == null
-          ? `<div class="n" style="color:#0A0A0A;font-size:40px">—</div><div class="lbl" style="color:#0A0A0A">PENDENTE</div>`
+          ? `<div class="n" style="color:#0A0A0A;font-size:40px">—</div><div class="lbl" style="color:#0A0A0A">EM RISCO</div>`
           : `<div class="n" style="color:#0A0A0A">${a.esf}<span style="font-size:20px;color:#8A8E95;font-weight:500">/10</span></div><div class="lbl">ESFORÇO</div><div class="esfbar">${segs}</div>`}</div>
       </div>`);
       this.world.appendChild(r);
@@ -44,6 +44,10 @@ scene({
     this.gRing = h(`<div style="position:absolute;left:40px;top:33px;width:84px;height:84px;border-radius:50%;border:2px solid #21D193"></div>`);
     this.gRing2 = this.gRing.cloneNode();
     g.append(this.gRing, this.gRing2);
+    // botão de ação no card do aluno em risco
+    this.sendBtn = h(`<div style="position:absolute;right:28px;top:34px;height:82px;padding:0 30px;border-radius:18px;background:#21D193;color:#0A0A0A;display:flex;align-items:center;gap:12px;font-size:30px;font-weight:700;opacity:0">Enviar treino <span style=\"font-size:32px\">→</span>
+      <div class="rip" style="position:absolute;left:50%;top:50%;width:90px;height:90px;margin:-45px 0 0 -45px;border-radius:50%;border:3px solid #fff;opacity:0"></div></div>`);
+    g.appendChild(this.sendBtn);
     $('#scenes').appendChild(el);
   },
   update(t) {
@@ -64,7 +68,7 @@ scene({
     txt($('#s2pct'), Math.round(100 * n / d.ativos) + '%');
     // linhas entram nas batidas 3,5 / 3,75 / 4,0 ...
     this.rows.forEach((r, i) => {
-      const t0 = 3.5 + i * .25;
+      const t0 = 3.25 + i * .2;
       popIn(r, t, t0, { dy: 70, blur: 8, dur: .8, ease: E.outExpo });
       const a = this.lista[i];
       if (a.esf != null) {
@@ -79,8 +83,7 @@ scene({
     });
     // Guilherme pulsa em laranja (a partir de 5,5 s, nas batidas)
     const g = this.rows[3];
-    const gp = P(t, 5.3, 5.8, E.outCubic);
-    const bp = beatPulse(t, 5.5, 8.5) * gp;
+    const gp = P(t, 4.4, 4.9, E.outCubic);
     css(g, 'background', gp > 0 ? `rgb(${Math.round(lerp(255, 10, gp))},${Math.round(lerp(255, 10, gp))},${Math.round(lerp(255, 10, gp))})` : '#fff');
     css(g, 'boxShadow', `0 30px 60px -24px rgba(0,0,0,${.2 + .35 * gp})`);
     const inv2 = gp > .5;
@@ -91,27 +94,33 @@ scene({
     g.querySelector('.avatar').style.background = inv2 ? '#21D193' : '#1C1D1F';
     g.querySelector('.avatar').style.color = inv2 ? '#0A0A0A' : '#fff';
     [this.gRing, this.gRing2].forEach((rg, k) => {
-      const ph = ((t - 5.5 + k * .25) % BEAT) / BEAT;
-      op(rg, t > 5.5 ? (1 - ph) * gp : 0);
+      const ph = ((t - 4.5 + k * .25) % BEAT) / BEAT;
+      op(rg, t > 4.5 && t < 5.6 ? (1 - ph) * gp : 0);
       tf(rg, `scale(${1 + ph * .6})`);
     });
     // câmera: deriva 3D, depois zoom no card do Guilherme
-    const zk = E.inOutCubic(inv(6.3, 7.4, t));
-    const rx = K(t, [[2.5, 6], [4.5, 2, E.outCubic], [6.3, 1, E.inOutSine], [7.4, 0]]);
-    const ry = K(t, [[2.5, -3], [4.5, 1, E.outCubic], [6.3, -1, E.inOutSine], [7.4, 2]]);
-    const sc = lerp(.62, 1, zin) * K(t, [[3, 1], [6.3, 1.04, E.inOutSine], [7.4, 1.3, E.inOutCubic], [8.1, 1.36, E.outCubic]]);
-    const fxp = lerp(540, 400, zk), fyp = lerp(820, 1203, zk);
-    const dx = lerp(0, 520 - 400, zk), dy = lerp(0, 820 - 1203, zk);
+    const zk = E.inOutCubic(inv(4.9, 5.7, t));
+    const rx = K(t, [[2.5, 6], [4.2, 2, E.outCubic], [4.9, 1, E.inOutSine], [5.7, 0]]);
+    const ry = K(t, [[2.5, -3], [4.2, 1, E.outCubic], [4.9, -1, E.inOutSine], [5.7, 0]]);
+    const sc = lerp(.62, 1, zin) * K(t, [[3, 1], [4.9, 1.03, E.inOutSine], [5.7, 1.12, E.inOutCubic], [7.0, 1.16, E.outCubic]]);
+    const fxp = lerp(540, 540, zk), fyp = lerp(820, 1203, zk);
+    const dx = 0, dy = lerp(0, 820 - 1203, zk);
     css(this.world, 'transformOrigin', `${fxp}px ${fyp}px`);
     tf(this.world, `perspective(1800px) translate3d(${dx}px, ${dy}px, 0) scale(${sc}) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(0deg)`);
     // profundidade de campo: desfoca os outros cards no zoom
-    this.rows.forEach((r, i) => { if (i !== 3 && t > 6.3) { fl(r, `blur(${zk * 7}px)`); op(r, 1 - zk * .45); } });
-    [this.chip, this.title, this.sub, this.ring].forEach(e => { if (t > 6.3) { fl(e, `blur(${zk * 8}px)`); op(e, 1 - zk * .6); } });
+    this.rows.forEach((r, i) => { if (i !== 3 && t > 4.9) { fl(r, `blur(${zk * 7}px)`); op(r, 1 - zk * .45); } });
+    [this.chip, this.title, this.sub, this.ring].forEach(e => { if (t > 4.9) { fl(e, `blur(${zk * 8}px)`); op(e, 1 - zk * .6); } });
     op(this.cam, Math.min(E.outCubic(inv(2.5, 2.9, t)), 1));
     fl(this.cam, t < 3.25 ? `blur(${(1 - zin) * 18}px)` : 'none');
-    // whip-pan para a esquerda (7,55–8,05)
-    const wp = E.inQuart(inv(7.55, 8.05, t));
-    if (t > 7.55) { tf(this.el, `translateX(${-1400 * wp}px)`); mblur(this.el, Math.sin(Math.PI * Math.min(1, wp * 1.1)) * 70 + wp * 20); }
-    else { tf(this.el, 'none'); if (t >= 3.25) fl(this.el, 'none'); }
+    // botão "Enviar treino" aparece no card em risco e é tocado em 6,1 s
+    const bIn = E.outExpo(inv(5.45, 5.95, t));
+    op(this.sendBtn, bIn); tf(this.sendBtn, `translateX(${(1 - bIn) * 40}px) scale(${1 - .06 * Math.exp(-Math.abs(t - 6.1) * 16)})`);
+    g.querySelector('.esf').style.opacity = String(1 - bIn);
+    const rp = inv(6.1, 6.5, t); const rip = this.sendBtn.querySelector('.rip');
+    op(rip, rp > 0 && rp < 1 ? 1 - rp : 0); tf(rip, `scale(${.5 + rp * 2.2})`);
+    // saída: a lista recua enquanto o card do treino sai voando (6,3–7,0)
+    const out = E.inOutCubic(inv(6.3, 7.0, t));
+    tf(this.el, `scale(${1 - out * .08})`); op(this.el, 1 - out);
+    fl(this.el, t > 6.3 ? `blur(${out * 10}px)` : 'none');
   },
 });

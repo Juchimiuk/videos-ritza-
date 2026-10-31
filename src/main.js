@@ -2,7 +2,13 @@
 const SCENES = [];
 function scene(def) { SCENES.push(def); return def; }
 // limites de cena (segundos) — múltiplos de 0,5 s (120 BPM)
-const T = { s1: 0, s2: 3, s3: 8, s4: 15, s5: 21, s6: 26, s7: 31, end: 34 };
+const T = { s1: 0, s2: 3, s3: 6.5, s4: 13, s5: 16, s6: 19, s7: 22, end: 26 };
+// remapeamento de tempo: cenas reaproveitadas rodam no seu tempo original (map = [[novo, antigo], ...])
+function warp(t, map) {
+  if (t <= map[0][0]) return map[0][1] + (t - map[0][0]);
+  for (let i = 1; i < map.length; i++) if (t <= map[i][0]) { const [a0, b0] = map[i - 1], [a1, b1] = map[i]; return b0 + (b1 - b0) * (t - a0) / (a1 - a0); }
+  const [a, b] = map[map.length - 1]; return b + (t - a);
+}
 
 // ---------- fundos mesh animados ----------
 const BG = { dark: [], light: [] };
@@ -24,19 +30,20 @@ function updateBg(t) {
     tf(b, `translate3d(${x}px, ${y - 400}px, 0)`);
   }));
   // claro/escuro alternando por cena
-  const light = K(t, [[0, 0], [2.45, 0], [2.95, 1, E.inOutCubic], [7.72, 1], [8.02, 0, E.inOutCubic], [14.75, 0], [15.15, 1, E.inOutCubic],
-    [20.7, 1], [21.1, 0, E.inOutCubic], [27.7, 0], [28.5, 1, E.inOutSine], [34, 1]]);
+  const light = K(t, [[0, 0], [2.45, 0], [2.95, 1, E.inOutCubic], [12.7, 1], [13.0, 0, E.inOutCubic], [15.65, 0], [15.95, 1, E.inOutCubic],
+    [18.65, 1], [18.95, 0, E.inOutCubic], [26, 0]]);
   op($('#bgLight'), light);
   css($('#vignette'), 'opacity', String(lerp(1, .35, light)));
 }
 
 // ---------- legendas ----------
 const CAPS = [
-  [3.35, 7.55, 'Veja <b>quem treinou hoje</b> — e quem ainda não.'],
-  [8.4, 14.55, 'Treinos do <b>Strava</b> entram sozinhos no Ritza.'],
-  [15.3, 20.6, 'A <b>evolução</b> de cada aluno, semana a semana.'],
-  [21.4, 25.85, 'No computador: o <b>painel do dia</b> da assessoria.'],
-  [26.3, 30.7, 'Lance o treino. <b>Chega na hora</b> no celular.'],
+  [3.2, 6.2, 'Veja quem treinou — e <b>quem está sumindo</b>.'],
+  [6.5, 9.7, 'Um toque: <b>treino enviado</b> ao aluno.'],
+  [10.0, 12.5, 'Horas depois: <b>treino feito.</b> Ele voltou.'],
+  [13.1, 15.55, 'Sem pedir print: <b>o Strava sincroniza sozinho</b>.'],
+  [16.0, 18.55, 'Aluno que vê evolução <b>continua com você</b>.'],
+  [19.1, 21.75, 'Sua assessoria inteira <b>em um olhar</b>.'],
 ];
 function updateCaps(t) {
   const pill = $('#capPill');
@@ -103,7 +110,7 @@ function seek(t) {
   for (const s of SCENES) {
     const on = t >= s.from && t < s.to;
     show(s.el, on);
-    if (on) s.update(t, ctx);
+    if (on) { s.update(s.map ? warp(t, s.map) : t, ctx, t); if (s.post) s.post(t, ctx); }
   }
   updateCaps(t);
   updateGrain(frame);
