@@ -19,10 +19,10 @@ const E = {
   inOutExpo: x => x <= 0 ? 0 : x >= 1 ? 1 : x < .5 ? Math.pow(2, 20 * x - 10) / 2 : (2 - Math.pow(2, -20 * x + 10)) / 2,
   inOutSine: x => -(Math.cos(Math.PI * x) - 1) / 2,
   outSine: x => Math.sin(x * Math.PI / 2),
-  outBack: x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
+  outBack: x => { const c1 = 0.6, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); },
   // mola amortecida: overshoot suave (~6%) e assentamento sem tremor
-  spring: x => x >= 1 ? 1 : 1 - Math.exp(-6.5 * x) * Math.cos(x * Math.PI * 1.9) * (1 - x * 0.0) ,
-  softSpring: x => x >= 1 ? 1 : 1 - Math.exp(-7.5 * x) * Math.cos(x * Math.PI * 1.35),
+  spring: x => x >= 1 ? 1 : 1 - Math.exp(-7 * x) * Math.cos(x * Math.PI * 1.2), // ~1% de overshoot, assentamento firme
+  softSpring: x => x >= 1 ? 1 : 1 - Math.exp(-7.5 * x) * Math.cos(x * Math.PI * 1.1),
 };
 
 // progresso com easing entre t0 e t1
@@ -64,7 +64,9 @@ function txt(el, v) { if (el.textContent !== v) el.textContent = v; }
 function show(el, v) { css(el, 'display', v ? '' : 'none'); }
 
 // entrada padrão: sobe com mola, desfoque -> nítido
-function popIn(el, t, t0, { dur = .7, dy = 90, dx = 0, s0 = .92, rot = 0, blur = 14, ease = E.spring, rx = 0, ry = 0 } = {}) {
+function popIn(el, t, t0, { dur = .8, dy = 90, dx = 0, s0 = .92, rot = 0, blur = 14, ease = E.spring, rx = 0, ry = 0 } = {}) {
+  // estilo sóbrio: deslocamentos curtos, sem giros, escala quase neutra
+  dy *= .45; dx *= .35; rot = 0; rx *= .15; ry *= .15; s0 = 1 - (1 - s0) * .35; blur = Math.min(blur, 10);
   const p = clamp((t - t0) / dur);
   const e = ease(p);
   const o = E.outCubic(clamp(p * 2.2));

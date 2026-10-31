@@ -1,6 +1,6 @@
 # Ritza: vídeo Reels (1080×1920, 60 fps, H.264)
 
-Animação de ~34 s do Ritza, o app e web para assessorias de corrida. É montada como uma timeline HTML/CSS determinística, renderizada quadro a quadro com Playwright (Chromium) e codificada com ffmpeg.
+Animação de ~34 s (paleta restrita: verde #21D193, branco e preto) do Ritza, o app e web para assessorias de corrida. É montada como uma timeline HTML/CSS determinística, renderizada quadro a quadro com Playwright (Chromium) e codificada com ffmpeg.
 
 - `src/`: a animação. `core.js` tem easing, molas e keyframes; `data.js` tem os dados consistentes entre as cenas; `s1.js` a `s7.js` são as cenas.
 - `assets/logo_original.png`: o logo enviado, sem alteração. `logo_hd.png` é a mesma arte ampliada 8× com bordas nítidas, mesma forma e mesma cor.

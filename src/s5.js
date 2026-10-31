@@ -1,16 +1,16 @@
 // ===== Cena 5 — Web: laptop 3D com painel do dia (21–26 s) e início da cena 6 =====
 function workoutHTML() {
-  const blk = (w, c, lbl) => `<div style="flex:${w};height:46px;border-radius:9px;background:${c};position:relative"><span style="position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:17px;font-weight:800;color:#5B6B80">${lbl}</span></div>`;
-  const reps = Array.from({ length: 6 }, (_, i) => blk(1.2, 'linear-gradient(180deg,#FF8A47,#FF6B1A)', i === 0 ? 'Z4' : '') + (i < 5 ? `<div style="flex:.7;height:16px;align-self:flex-end;border-radius:5px;background:#BFD3E8"></div>` : '')).join('');
-  return `<div style="width:600px;padding:30px 32px;border-radius:30px;background:linear-gradient(160deg,#FFFFFF,#F1F6FB);color:#0A1628;box-shadow:0 30px 70px -20px rgba(7,17,31,.55),0 0 0 2px rgba(33,209,147,.6);font-family:'Inter Display',Inter,sans-serif">
-    <div style="display:flex;align-items:center;gap:12px"><div class="pill" style="background:rgba(33,209,147,.16);color:#0B8F62;font-size:19px;letter-spacing:.08em">NOVO TREINO</div><div style="margin-left:auto;font-size:20px;font-weight:700;color:#5B6B80">${DATA.treino.dia}</div></div>
-    <div style="font-size:52px;font-weight:900;letter-spacing:-.035em;margin-top:16px;line-height:1">Intervalado<br>6 × 800 m</div>
-    <div style="display:flex;align-items:flex-end;gap:5px;margin-top:52px">${blk(2.4, '#3B82F6', 'Z2')}${reps}${blk(1.8, '#21D193', 'Z1')}</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:22px;font-size:20px;font-weight:700;color:#334155">
-      <div><span style="color:#3B82F6">●</span> Aquecimento 15 min</div><div><span style="color:#FF6B1A">●</span> 6 × 800 m a 3:52</div>
-      <div><span style="color:#BFD3E8">●</span> Rec. 2 min trotando</div><div><span style="color:#21D193">●</span> Desaquec. 10 min</div></div>
-    <div style="display:flex;align-items:center;margin-top:22px;padding-top:18px;border-top:2px solid #E3EAF2;font-size:22px;font-weight:800">
-      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:linear-gradient(135deg,#FF6B1A,#FF3D8B);margin-right:12px">GR</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0B8F62">≈ 10 km</span></div>
+  const blk = (w, c, lbl) => `<div style="flex:${w};height:46px;border-radius:9px;background:${c};position:relative"><span style="position:absolute;left:0;right:0;top:-30px;text-align:center;font-size:16px;font-weight:600;color:#8A8E95">${lbl}</span></div>`;
+  const reps = Array.from({ length: 6 }, (_, i) => blk(1.2, '#21D193', i === 0 ? 'Z4' : '') + (i < 5 ? `<div style="flex:.7;height:16px;align-self:flex-end;border-radius:4px;background:#D9DBDE"></div>` : '')).join('');
+  return `<div style="width:600px;padding:30px 32px;border-radius:30px;background:#FFFFFF;color:#0A0A0A;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.06);font-family:'Inter Display',Inter,sans-serif">
+    <div style="display:flex;align-items:center;gap:12px"><div class="pill" style="background:#0A0A0A;color:#21D193;font-size:17px;letter-spacing:.16em">NOVO TREINO</div><div style="margin-left:auto;font-size:19px;font-weight:500;color:#6B6F76">${DATA.treino.dia}</div></div>
+    <div style="font-size:52px;font-weight:700;letter-spacing:-.045em;margin-top:18px;line-height:1">Intervalado<br>6 × 800 m</div>
+    <div style="display:flex;align-items:flex-end;gap:5px;margin-top:52px">${blk(2.4, '#A9AEB4', 'Z2')}${reps}${blk(1.8, '#0A0A0A', 'Z1')}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:22px;font-size:19px;font-weight:500;color:#3A3D42">
+      <div><span style="color:#A9AEB4">●</span> Aquecimento 15 min</div><div><span style="color:#21D193">●</span> 6 × 800 m a 3:52</div>
+      <div><span style="color:#D9DBDE">●</span> Rec. 2 min trotando</div><div><span style="color:#0A0A0A">●</span> Desaquec. 10 min</div></div>
+    <div style="display:flex;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid #E7E8EA;font-size:21px;font-weight:600">
+      <div class="avatar" style="width:40px;height:40px;font-size:15px;background:#0A0A0A;margin-right:12px">GR</div>${DATA.treino.aluno}<span style="margin-left:auto;color:#0A0A0A">≈ 10 km</span></div>
   </div>`;
 }
 
@@ -21,14 +21,14 @@ scene({
     const el = this.el = h(`<div class="scene" id="s5"></div>`);
     // reflexo de piso + sombra realista
     this.shadow = h(`<div style="position:absolute;left:90px;top:1000px;width:900px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.75),rgba(0,0,0,0));filter:blur(18px)"></div>`);
-    this.floorGlow = h(`<div style="position:absolute;left:-100px;top:900px;width:1280px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(33,209,147,.28),rgba(33,209,147,0))"></div>`);
+    this.floorGlow = h(`<div style="position:absolute;left:-100px;top:900px;width:1280px;height:600px;border-radius:50%;background:radial-gradient(closest-side,rgba(33,209,147,.10),rgba(33,209,147,0))"></div>`);
     el.append(this.floorGlow, this.shadow);
     const world = h(`<div id="lapWorld"></div>`);
     this.lap = h(`<div id="lap"></div>`);
     world.appendChild(this.lap); el.appendChild(world);
     // base com teclado
     let keys = '';
-    for (let r = 0; r < 5; r++) for (let c = 0; c < 14; c++) keys += `<div style="position:absolute;left:${c * 56}px;top:${r * 52}px;width:50px;height:46px;border-radius:8px;background:linear-gradient(180deg,#1B2433,#0E141E);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)"></div>`;
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 14; c++) keys += `<div style="position:absolute;left:${c * 56}px;top:${r * 52}px;width:50px;height:46px;border-radius:8px;background:linear-gradient(180deg,#1E1F21,#111213);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)"></div>`;
     this.base = h(`<div class="base" style="left:-500px;top:0;width:1000px;height:660px;transform-origin:50% 0;transform:rotateX(90deg)">
       <div class="face" style="backface-visibility:visible;border-radius:0 0 34px 34px;background:linear-gradient(180deg,#AEB8C6,#D9E0E9 30%,#C3CCD8);box-shadow:inset 0 2px 0 rgba(255,255,255,.7)">
         <div style="position:absolute;left:108px;top:46px;width:784px;height:262px">${keys}</div>
@@ -39,40 +39,40 @@ scene({
     // tampa com tela
     const alunosOk = D.alunos.filter(a => a.ok);
     const listRows = alunosOk.map((a, i) => `<div class="dl" style="display:flex;align-items:center;gap:12px;height:50px;border-bottom:1px solid rgba(255,255,255,.06)">
-      <div class="avatar" style="width:34px;height:34px;font-size:13px;background:linear-gradient(135deg,${a.cor[0]},${a.cor[1]})">${a.ini}</div>
-      <div style="font-size:16px;font-weight:700;flex:1">${a.nome}<div style="font-size:12.5px;color:#8EA2BC;font-weight:600;margin-top:2px">${a.st.replace('Treinou · ', '')}</div></div>
-      <div style="font-size:20px;font-weight:900;color:${esfColor(a.esf)};width:30px;text-align:center">${a.esf}</div></div>`).join('');
-    const pend = [['Guilherme Rocha Almeida', 'GR', '#FF6B1A'], ['Camila Ribeiro Souza', 'CR', '#8B5CF6'], ['Rodrigo Nunes Barbosa', 'RN', '#3B82F6']].map(([n, i, c], k) => `
-      <div style="display:flex;align-items:center;gap:10px;height:44px;${k === 0 ? 'color:#FF8A47' : ''}"><div class="avatar" style="width:30px;height:30px;font-size:12px;background:${c}">${i}</div><div style="font-size:14.5px;font-weight:700">${n}</div></div>`).join('');
-    const bars14 = D.constanciaDias.map(v => `<i style="display:block;width:7px;height:${(v - 60) / 30 * 40}px;border-radius:2px;background:${v >= 82 ? '#21D193' : '#3B82F6'};transform-origin:50% 100%"></i>`).join('');
-    const nav = ['Painel', 'Alunos', 'Treinos', 'Agenda', 'Convites'].map((n, i) => `<div style="height:44px;margin:4px 12px;border-radius:10px;display:flex;align-items:center;padding-left:14px;font-size:14px;font-weight:700;${i === 0 ? 'background:rgba(33,209,147,.16);color:#21D193' : 'color:#8EA2BC'}">${n}</div>`).join('');
+      <div class="avatar" style="width:34px;height:34px;font-size:12px;background:#222326">${a.ini}</div>
+      <div style="font-size:16px;font-weight:700;flex:1">${a.nome}<div style="font-size:12.5px;color:#8A8E95;font-weight:500;margin-top:2px">${a.st.replace('Treinou · ', '')}</div></div>
+      <div style="font-size:18px;font-weight:700;color:#fff;width:44px;text-align:right">${a.esf}<span style="font-size:11px;color:#8A8E95">/10</span></div></div>`).join('');
+    const pend = [['Guilherme Rocha Almeida', 'GR', '#fff'], ['Camila Ribeiro Souza', 'CR', '#222326'], ['Rodrigo Nunes Barbosa', 'RN', '#222326']].map(([n, i, c], k) => `
+      <div style="display:flex;align-items:center;gap:10px;height:44px;${k === 0 ? 'color:#fff' : 'color:#B5B8BD'}"><div class="avatar" style="width:30px;height:30px;font-size:11px;background:${c};${k === 0 ? 'color:#0A0A0A' : ''}">${i}</div><div style="font-size:14.5px;font-weight:700">${n}</div></div>`).join('');
+    const bars14 = D.constanciaDias.map(v => `<i style="display:block;width:7px;height:${(v - 60) / 30 * 40}px;border-radius:2px;background:${v >= 82 ? '#21D193' : '#3A3C40'};transform-origin:50% 100%"></i>`).join('');
+    const nav = ['Painel', 'Alunos', 'Treinos', 'Agenda', 'Convites'].map((n, i) => `<div style="height:44px;margin:4px 12px;border-radius:10px;display:flex;align-items:center;padding-left:14px;font-size:14px;font-weight:700;${i === 0 ? 'background:rgba(255,255,255,.06);color:#fff' : 'color:#8A8E95'}">${n}</div>`).join('');
     this.lid = h(`<div class="lid" style="left:-500px;top:-652px;width:1000px;height:646px;transform-origin:50% 100%">
       <div class="face" style="background:#0B0F16;box-shadow:inset 0 0 0 2px #3A4250">
         <div class="dash" id="dash">
-          <div style="position:absolute;left:0;top:0;bottom:0;width:124px;background:#0D1A2C;border-right:1px solid rgba(255,255,255,.06)">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:124px;background:#0E0E0F;border-right:1px solid rgba(255,255,255,.06)">
             <img src="../assets/logo_hd.png" style="width:46px;margin:22px 0 18px 26px;display:block">${nav}</div>
-          <div style="position:absolute;left:146px;top:22px;font-size:28px;font-weight:900;letter-spacing:-.02em">Painel do dia</div>
-          <div style="position:absolute;left:147px;top:58px;font-size:14px;font-weight:600;color:#8EA2BC">qua, 28 out · ${D.assessoria}</div>
-          <div style="position:absolute;right:22px;top:24px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><div class="avatar" style="width:36px;height:36px;font-size:13px;background:linear-gradient(135deg,#3B82F6,#21D193)">RA</div>Prof. Rafael</div>
+          <div style="position:absolute;left:146px;top:22px;font-size:28px;font-weight:700;letter-spacing:-.03em">Painel do dia</div>
+          <div style="position:absolute;left:147px;top:58px;font-size:14px;font-weight:500;color:#8A8E95">qua, 28 out · ${D.assessoria}</div>
+          <div style="position:absolute;right:22px;top:24px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700"><div class="avatar" style="width:36px;height:36px;font-size:13px;background:#21D193;color:#0A0A0A">RA</div>Prof. Rafael</div>
           <div class="kpi" style="left:146px"><div class="k">ALUNOS ATIVOS</div><div class="v" id="k1">0</div><div class="s">+2 neste mês</div></div>
-          <div class="kpi" style="left:342px"><div class="k">TREINARAM HOJE</div><div class="v" style="color:#21D193"><span id="k2">0</span><span style="font-size:22px;color:#8EA2BC">/24</span></div><div class="s">71% da equipe</div>
-            <svg style="position:absolute;right:12px;top:12px" width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#1E3350" stroke-width="5"/><circle id="k2r" cx="17" cy="17" r="13" fill="none" stroke="#21D193" stroke-width="5" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" transform="rotate(-90 17 17)" stroke-linecap="round"/></svg></div>
-          <div class="kpi" style="left:538px"><div class="k">CONSTÂNCIA 14 DIAS</div><div class="v" style="color:#5C9DFF"><span id="k3">0</span>%</div><div id="k3b" style="display:flex;gap:3px;align-items:flex-end;height:42px;margin-top:4px">${bars14}</div></div>
-          <div class="kpi" style="left:734px;border-color:rgba(255,201,60,.35)"><div class="k">CONVITES PENDENTES</div><div class="v" style="color:#FFC93C" id="k4">0</div><div class="s">2 enviados ontem</div></div>
-          <div class="dpanel" style="position:absolute;left:146px;top:264px;width:470px;height:310px;border-radius:14px;background:#0E1B2E;border:1px solid rgba(255,255,255,.07);padding:14px 18px">
-            <div style="font-size:15px;font-weight:800;letter-spacing:.04em;display:flex">QUEM TREINOU HOJE<span style="margin-left:auto;color:#21D193">17</span></div>
+          <div class="kpi" style="left:342px"><div class="k">TREINARAM HOJE</div><div class="v" style="color:#21D193"><span id="k2">0</span><span style="font-size:22px;color:#8A8E95;font-weight:500">/24</span></div><div class="s">71% da equipe</div>
+            <svg style="position:absolute;right:12px;top:12px" width="34" height="34" viewBox="0 0 34 34"><circle cx="17" cy="17" r="13" fill="none" stroke="#26282B" stroke-width="4"/><circle id="k2r" cx="17" cy="17" r="13" fill="none" stroke="#21D193" stroke-width="4" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" transform="rotate(-90 17 17)" stroke-linecap="round"/></svg></div>
+          <div class="kpi" style="left:538px"><div class="k">CONSTÂNCIA 14 DIAS</div><div class="v" style="color:#fff"><span id="k3">0</span>%</div><div id="k3b" style="display:flex;gap:3px;align-items:flex-end;height:42px;margin-top:4px">${bars14}</div></div>
+          <div class="kpi" style="left:734px"><div class="k">CONVITES PENDENTES</div><div class="v" id="k4">0</div><div class="s">2 enviados ontem</div></div>
+          <div class="dpanel" style="position:absolute;left:146px;top:264px;width:470px;height:310px;border-radius:14px;background:#121314;border:1px solid rgba(255,255,255,.07);padding:14px 18px">
+            <div style="font-size:13px;font-weight:600;letter-spacing:.12em;color:#8A8E95;display:flex">QUEM TREINOU HOJE<span style="margin-left:auto;color:#21D193">17</span></div>
             <div style="margin-top:6px">${listRows}</div></div>
-          <div class="dpanel" style="position:absolute;left:632px;top:264px;width:296px;height:310px;border-radius:14px;background:#0E1B2E;border:1px solid rgba(255,107,26,.3);padding:14px 16px">
-            <div style="font-size:15px;font-weight:800;letter-spacing:.04em;display:flex">AINDA NÃO TREINARAM<span style="margin-left:auto;color:#FF8A47">7</span></div>
+          <div class="dpanel" style="position:absolute;left:632px;top:264px;width:296px;height:310px;border-radius:14px;background:#121314;border:1px solid rgba(255,255,255,.07);padding:14px 16px">
+            <div style="font-size:13px;font-weight:600;letter-spacing:.12em;color:#8A8E95;display:flex">AINDA NÃO TREINARAM<span style="margin-left:auto;color:#fff">7</span></div>
             <div style="margin-top:6px">${pend}</div>
-            <div style="font-size:13px;color:#8EA2BC;font-weight:600;margin-top:4px">+ 4 alunos</div>
-            <div id="launchBtn" style="position:absolute;left:16px;right:16px;bottom:14px;height:52px;border-radius:12px;background:linear-gradient(90deg,#21D193,#3BE0A8);color:#07111F;font-size:17px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px">+ Lançar treino</div></div>
+            <div style="font-size:13px;color:#8A8E95;font-weight:500;margin-top:4px">+ 4 alunos</div>
+            <div id="launchBtn" style="position:absolute;left:16px;right:16px;bottom:14px;height:52px;border-radius:12px;background:#21D193;color:#0A0A0A;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">+ Lançar treino</div></div>
           <div id="modalDim" style="position:absolute;inset:0;background:rgba(5,10,18,.6);opacity:0"></div>
           <div id="modal" style="position:absolute;left:500px;top:200px;width:600px;transform-origin:0 0;opacity:0">${workoutHTML()}
-            <div id="sendBtn" style="margin-top:-2px;position:absolute;right:30px;bottom:-30px;padding:16px 30px;border-radius:14px;background:#21D193;color:#07111F;font-size:22px;font-weight:900;box-shadow:0 12px 30px -8px rgba(33,209,147,.8)">Lançar para o aluno →</div></div>
+            <div id="sendBtn" style="margin-top:-2px;position:absolute;right:30px;bottom:-30px;padding:16px 30px;border-radius:14px;background:#0A0A0A;color:#fff;font-size:21px;font-weight:600;box-shadow:0 12px 30px -10px rgba(0,0,0,.6)">Lançar para o aluno →</div></div>
           <div id="cursor" style="position:absolute;left:0;top:0;width:34px;height:34px">
-            <svg width="34" height="40" viewBox="0 0 34 40"><path d="M3 2 L3 31 L11 24 L16 36 L22 33 L17 22 L28 22 Z" fill="#fff" stroke="#07111F" stroke-width="2.5" stroke-linejoin="round"/></svg>
-            <div id="ripple" style="position:absolute;left:-26px;top:-26px;width:56px;height:56px;border-radius:50%;border:4px solid #21D193;opacity:0"></div></div>
+            <svg width="34" height="40" viewBox="0 0 34 40"><path d="M3 2 L3 31 L11 24 L16 36 L22 33 L17 22 L28 22 Z" fill="#fff" stroke="#070707" stroke-width="2.5" stroke-linejoin="round"/></svg>
+            <div id="ripple" style="position:absolute;left:-26px;top:-26px;width:56px;height:56px;border-radius:50%;border:2px solid #21D193;opacity:0"></div></div>
           <div id="sheen" style="position:absolute;inset:-40%;background:linear-gradient(115deg,rgba(255,255,255,0) 40%,rgba(255,255,255,.10) 48%,rgba(255,255,255,.03) 55%,rgba(255,255,255,0) 60%)"></div>
           <div id="screenOff" style="position:absolute;inset:0;background:#05080D"></div>
         </div>
@@ -96,7 +96,7 @@ scene({
     // abertura da tampa (mola suave) e câmera orbitando
     const open = E.softSpring(inv(21.25, 22.45, t));
     css(this.lid, 'transform', `translateZ(1px) rotateX(${lerp(-90, 12, open)}deg)`);
-    const ry = K(t, [[20.85, -36], [23.2, 12, E.inOutSine], [24.3, 2, E.inOutCubic], [25.5, -3, E.inOutSine], [27.0, 0, E.inOutSine]]);
+    const ry = K(t, [[20.85, -30], [23.2, 12, E.inOutSine], [24.3, 2, E.inOutCubic], [25.5, -3, E.inOutSine], [27.0, 0, E.inOutSine]]);
     const rx = K(t, [[20.85, -30], [23.2, -14, E.inOutSine], [24.3, -5, E.inOutCubic], [27, -4]]);
     const s = K(t, [[20.85, .55], [21.6, .78, E.outCubic], [23.2, .84, E.inOutSine], [24.2, 1.7, E.inOutCubic], [25.3, 1.72, E.inOutSine], [26.1, 1.6, E.inOutCubic], [27.0, 1.62]]);
     const ty = K(t, [[20.85, 160], [23.2, 220, E.inOutSine], [24.2, 640, E.inOutCubic], [24.6, 640, E.inOutSine], [25.4, 230, E.inOutCubic], [26.1, 190, E.inOutCubic], [27.0, 200]]);
@@ -108,7 +108,7 @@ scene({
     tf(this.shadow, `translate(${tx * .7 - ex * 1400}px, ${(ty - 160) * .9 + (s - .8) * 260}px) scale(${s * (1 + Math.abs(ry) / 200)}, ${s * .8})`);
     op(this.shadow, (.5 + open * .5) * (1 - ex) * (1 - P(t, 23.4, 24.2)) + P(t, 24.2, 25) * 0);
     op(this.floorGlow, (.3 + .7 * open) * (1 - ex) * (1 - P(t, 23.4, 24.2) * .6));
-    tf(this.floorGlow, `scale(${1 + beatPulse(t, 21, 27) * .05})`);
+    
     // tela liga
     op($('#screenOff'), 1 - P(t, 22.0, 22.45));
     tf($('#sheen'), `translateX(${-ry * 9 - tx * .3}px)`);

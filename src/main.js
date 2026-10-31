@@ -8,9 +8,9 @@ const T = { s1: 0, s2: 3, s3: 8, s4: 15, s5: 21, s6: 26, s7: 31, end: 34 };
 const BG = { dark: [], light: [] };
 function buildBg() {
   const dk = $('#bgDark'), lt = $('#bgLight');
-  dk.style.background = '#07111F';
-  const dc = [['rgba(33,209,147,.42)', 1300], ['rgba(59,130,246,.50)', 1400], ['rgba(255,61,139,.30)', 1100], ['rgba(20,90,140,.55)', 1500], ['rgba(255,107,26,.16)', 900]];
-  const lc = [['rgba(33,209,147,.36)', 1300], ['rgba(59,130,246,.30)', 1400], ['rgba(255,201,60,.30)', 1000], ['rgba(255,61,139,.14)', 1100], ['rgba(140,200,255,.45)', 1500]];
+  dk.style.background = '#070707';
+  const dc = [['rgba(33,209,147,.16)', 1500], ['rgba(255,255,255,.035)', 1400], ['rgba(33,209,147,.07)', 1200], ['rgba(255,255,255,.025)', 1500], ['rgba(33,209,147,.05)', 900]];
+  const lc = [['rgba(33,209,147,.10)', 1500], ['rgba(0,0,0,.035)', 1400], ['rgba(33,209,147,.06)', 1200], ['rgba(0,0,0,.02)', 1500], ['rgba(255,255,255,0)', 900]];
   for (const [c, s] of dc) { const b = h(`<div class="blob" style="width:${s}px;height:${s}px;background:radial-gradient(circle at 50% 50%, ${c} 0%, rgba(0,0,0,0) 62%)"></div>`); dk.appendChild(b); BG.dark.push(b); }
   for (const [c, s] of lc) { const b = h(`<div class="blob" style="width:${s}px;height:${s}px;background:radial-gradient(circle at 50% 50%, ${c} 0%, rgba(255,255,255,0) 62%)"></div>`); lt.appendChild(b); BG.light.push(b); }
 }
@@ -19,9 +19,9 @@ function updateBg(t) {
   const pulse = beatPulse(t, 0, T.s7);
   [BG.dark, BG.light].forEach((arr, k) => arr.forEach((b, i) => {
     const [x0, y0, f] = BLOBPATH[i];
-    const x = x0 + Math.sin(t * f * 2.4 + i * 1.7 + k) * 260;
-    const y = y0 + Math.cos(t * f * 2.0 + i * 2.3 + k) * 300;
-    tf(b, `translate3d(${x}px, ${y - 400}px, 0) scale(${1 + .06 * Math.sin(t * .9 + i) + pulse * .035})`);
+    const x = x0 + Math.sin(t * f * 1.1 + i * 1.7 + k) * 160;
+    const y = y0 + Math.cos(t * f * 0.9 + i * 2.3 + k) * 180;
+    tf(b, `translate3d(${x}px, ${y - 400}px, 0)`);
   }));
   // claro/escuro alternando por cena
   const light = K(t, [[0, 0], [2.45, 0], [2.95, 1, E.inOutCubic], [7.72, 1], [8.02, 0, E.inOutCubic], [14.75, 0], [15.15, 1, E.inOutCubic],
@@ -33,7 +33,7 @@ function updateBg(t) {
 // ---------- legendas ----------
 const CAPS = [
   [3.35, 7.55, 'Veja <b>quem treinou hoje</b> — e quem ainda não.'],
-  [8.4, 14.55, 'Treinos do <b style="color:#FF6B1A">Strava</b> entram sozinhos no Ritza.'],
+  [8.4, 14.55, 'Treinos do <b>Strava</b> entram sozinhos no Ritza.'],
   [15.3, 20.6, 'A <b>evolução</b> de cada aluno, semana a semana.'],
   [21.4, 25.85, 'No computador: o <b>painel do dia</b> da assessoria.'],
   [26.3, 30.7, 'Lance o treino. <b>Chega na hora</b> no celular.'],
@@ -60,7 +60,8 @@ function mblur(el, px, vertical = false) {
 
 // ---------- partículas (canvas) ----------
 const fx = { ctx: null, draws: [] };
-function burst(ctx, t, t0, x, y, { n = 70, seed = 7, speed = 900, life = 1.1, colors = ['#21D193', '#3B82F6', '#FFC93C', '#FF3D8B', '#FF6B1A'], size = 10 } = {}) {
+function burst(ctx, t, t0, x, y, { n = 70, seed = 7, speed = 900, life = 1.1, colors = ['#21D193', '#FFFFFF'], size = 10 } = {}) {
+  n = Math.round(n * .3); size *= .45; speed *= .7;
   const dt = t - t0; if (dt < 0 || dt > life) return;
   const r = rng(seed);
   for (let i = 0; i < n; i++) {
@@ -70,14 +71,15 @@ function burst(ctx, t, t0, x, y, { n = 70, seed = 7, speed = 900, life = 1.1, co
     const al = clamp(1 - dt / life) ** 1.4;
     ctx.globalAlpha = al; ctx.fillStyle = colors[i % colors.length];
     ctx.save(); ctx.translate(px, py); ctx.rotate(a + dt * 6 * (r() - .5));
-    if (i % 3 === 0) ctx.fillRect(-sz, -sz * .35, sz * 2, sz * .7);
-    else { ctx.beginPath(); ctx.arc(0, 0, sz * .6, 0, 7); ctx.fill(); }
+    ctx.beginPath(); ctx.arc(0, 0, sz * .6, 0, 7); ctx.fill();
     ctx.restore();
   }
   // onda de choque
   const sw = E.outCubic(clamp(dt / .55));
-  ctx.globalAlpha = (1 - sw) * .9; ctx.strokeStyle = '#21D193'; ctx.lineWidth = 10 * (1 - sw) + 1;
-  ctx.beginPath(); ctx.arc(x, y, 40 + sw * 280, 0, 7); ctx.stroke();
+  ctx.globalAlpha = (1 - sw) * .8; ctx.strokeStyle = '#21D193'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.arc(x, y, 120 + sw * 220, 0, 7); ctx.stroke();
+  const sw2 = E.outCubic(clamp((dt - .08) / .6)); ctx.globalAlpha = (1 - sw2) * .4 * (dt > .08); ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.arc(x, y, 120 + sw2 * 360, 0, 7); ctx.stroke();
   ctx.globalAlpha = 1;
 }
 
