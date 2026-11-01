@@ -17,14 +17,14 @@ scene({
     this.ghosts = [ghost(500, 'MC', 'Mariana Costa Silva', 'Treinou · 8,5 km'), ghost(636, 'LO', 'Lucas Oliveira Santos', 'Treinou · Fartlek 8 km'),
       ghost(1006, 'JM', 'Juliana Mendes Pereira', 'Treinou · 10 km'), ghost(1142, 'PH', 'Pedro Henrique Lima', 'Treinou · Tiros 10 × 400 m')];
     // card do aluno em risco
-    this.card = h(`<div class="row glass light" style="top:772px;height:196px;padding:0 36px;gap:30px;transform-origin:50% 50%">
+    this.card = h(`<div class="row glass light" style="top:772px;height:196px;padding:0 30px;gap:26px;transform-origin:50% 50%">
       <div class="avatar hjav" style="width:112px;height:112px;font-size:38px;background:#1C1D1F;color:#fff;position:relative">HJ
         <div class="rg" style="position:absolute;inset:-8px;border-radius:50%;border:2px solid #21D193;opacity:0"></div>
         <div class="rg" style="position:absolute;inset:-8px;border-radius:50%;border:2px solid #21D193;opacity:0"></div></div>
-      <div style="min-width:0"><div class="name" style="font-size:46px;font-weight:600">Henrique Juchimiuk</div>
+      <div style="min-width:0"><div class="name" style="font-size:42px;font-weight:600">Henrique Juchimiuk</div>
         <div class="st" style="font-size:31px;margin-top:8px;color:#0A0A0A"><span class="dot" style="border:2.5px solid currentColor;width:14px;height:14px"></span>Há 5 dias sem treinar</div></div>
       <div class="risk" style="margin-left:auto;padding:12px 22px;border-radius:999px;border:2px solid #21D193;color:#21D193;font-size:24px;font-weight:600;letter-spacing:.14em;white-space:nowrap">EM RISCO</div>
-      <div class="send" style="position:absolute;right:30px;top:50%;margin-top:-50px;height:100px;padding:0 36px;border-radius:22px;background:#21D193;color:#0A0A0A;display:flex;align-items:center;gap:14px;font-size:34px;font-weight:600;opacity:0">Enviar treino →
+      <div class="send" style="position:absolute;right:30px;top:50%;margin-top:-50px;height:96px;padding:0 30px;border-radius:22px;background:#21D193;color:#0A0A0A;display:flex;align-items:center;gap:14px;font-size:31px;font-weight:600;opacity:0">Enviar treino →
         <div class="rip" style="position:absolute;left:50%;top:50%;width:100px;height:100px;margin:-50px 0 0 -50px;border-radius:50%;border:3px solid #fff;opacity:0"></div></div></div>`);
     this.sendBtn = this.card.querySelector('.send');
     this.world.append(this.top1, this.top2, ...this.ghosts, this.card, this.bot);

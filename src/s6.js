@@ -45,7 +45,7 @@ scene({
       this.txt = [[5.95, 9.05, W('Um toque. <span style="color:#21D193">Treino enviado.</span>', 64)], [9.35, 10.45, W('Horas depois…', 64)]];
       this.txt.forEach(x => this.el.appendChild(x[2]));
       this.veil = h(`<div class="layer" style="background:rgba(255,255,255,.55);opacity:0"></div>`);
-      this.big = h(`<div class="layer" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:500;letter-spacing:-.05em;line-height:.95;color:#0A0A0A;opacity:0"><div style="font-size:190px">Ele</div><div style="font-size:250px;color:#21D193">voltou.</div></div>`);
+      this.big = h(`<div class="layer" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:500;letter-spacing:-.05em;line-height:.95;color:#0A0A0A;opacity:0"><div style="font-size:190px">Ele</div><div style="font-size:220px;color:#21D193">voltou.</div></div>`);
       this.el.append(this.veil, this.big);
     }
     this.upd(t + .75, ctx);

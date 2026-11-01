@@ -85,9 +85,9 @@ scene({
     // HUD inferior: estatísticas ao vivo
     const stat = (x, k, id, u, col, extra = '') => h(`<div class="glass stat" style="left:${x}px;">
       <div class="k">${k}</div><div class="v" style="color:${col}"><span id="${id}">0</span><span class="u">${u}</span></div>${extra}</div>`);
-    this.sDist = stat(32, 'DISTÂNCIA', 's3d', 'km', '#21D193', `<div style="margin-top:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)"><div id="s3bar" style="height:100%;width:0;border-radius:6px;background:#21D193"></div></div>`);
-    this.sPace = stat(376, 'RITMO', 's3p', '/km', '#FFFFFF', `<div style="margin-top:16px;font-size:20px;font-weight:700;color:rgba(255,255,255,.6)">média <b id="s3pm" style="color:#fff">—</b></div>`);
-    this.sHr = stat(720, 'FREQ. CARDÍACA', 's3h', 'bpm', '#FFFFFF', `<svg width="264" height="44" style="margin-top:10px;overflow:visible"><path id="s3ecg" d="M0 22 L40 22 L52 22 L60 6 L70 40 L78 16 L86 22 L130 22 L142 22 L150 6 L160 40 L168 16 L176 22 L220 22 L232 22 L240 6 L250 40" fill="none" stroke="#21D193" stroke-width="3" stroke-linejoin="round" pathLength="1" stroke-dasharray=".35 .65"/></svg>`);
+    this.sDist = stat(72, 'DISTÂNCIA', 's3d', 'km', '#21D193', `<div style="margin-top:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.12)"><div id="s3bar" style="height:100%;width:0;border-radius:6px;background:#21D193"></div></div>`);
+    this.sPace = stat(390, 'RITMO', 's3p', '/km', '#FFFFFF', `<div style="margin-top:16px;font-size:20px;font-weight:700;color:rgba(255,255,255,.6)">média <b id="s3pm" style="color:#fff">—</b></div>`);
+    this.sHr = stat(708, 'FREQ. CARDÍACA', 's3h', 'bpm', '#FFFFFF', `<svg width="236" height="44" style="margin-top:10px;overflow:visible"><path id="s3ecg" d="M0 22 L40 22 L52 22 L60 6 L70 40 L78 16 L86 22 L130 22 L142 22 L150 6 L160 40 L168 16 L176 22 L220 22 L232 22 L240 6 L250 40" fill="none" stroke="#21D193" stroke-width="3" stroke-linejoin="round" pathLength="1" stroke-dasharray=".35 .65"/></svg>`);
     el.append(this.chip, this.top, this.sDist, this.sPace, this.sHr);
     // card da atividade (match cut da rota) + ícone do Ritza
     this.card = h(`<div class="glass" style="left:150px;top:620px;width:780px;height:560px;padding:0;overflow:hidden;transform-origin:50% 50%">

@@ -5,13 +5,13 @@ scene({
     const el = this.el = h(`<div class="scene" id="s7" style="color:#0A0A0A"></div>`);
     this.bg = h(`<div class="layer" style="background:#FFFFFF"></div>`);
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`);
-    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:736px;text-align:center;font-size:78px;font-weight:500;letter-spacing:-.045em;line-height:1.08"></div>`);
+    this.head = h(`<div style="position:absolute;left:72px;right:72px;top:736px;text-align:center;font-size:78px;font-weight:500;letter-spacing:-.045em;line-height:1.08"></div>`);
     this.hw = ['O', 'app', 'da', 'sua', 'assessoria', '<br>', 'de', '<span style="color:#21D193">corrida.</span>'].map(w => {
       if (w === '<br>') { this.head.appendChild(document.createElement('br')); return null; }
       const m = h(`<span style="display:inline-block;overflow:hidden;vertical-align:top;padding:0 .12em .14em"><span style="display:inline-block">${w}</span></span>`);
       this.head.appendChild(m); return m.firstElementChild;
     }).filter(Boolean);
-    this.btn = h(`<div style="position:absolute;left:32px;top:1060px;width:1016px;height:164px;border-radius:26px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:500;letter-spacing:-.02em;overflow:hidden">
+    this.btn = h(`<div style="position:absolute;left:72px;top:1060px;width:936px;height:164px;border-radius:26px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:44px;font-weight:500;letter-spacing:-.02em;overflow:hidden">
       Agendar demonstração <span style="color:#21D193">· 20 min</span>
       <div class="sh" style="position:absolute;top:-20px;left:0;width:140px;height:210px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
     this.url = h(`<div style="position:absolute;left:0;right:0;top:1300px;text-align:center;font-size:54px;font-weight:500;letter-spacing:-.03em">ritza.com.br <span style="color:#6B6F76">· link na bio</span></div>`);

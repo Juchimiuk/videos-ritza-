@@ -11,7 +11,7 @@ scene({
     this.foot = W(1418, 'Aluno motivado fica.', 66);
     this.curtain = h(`<div class="layer" style="background:#070707;transform-origin:50% 100%;transform:scaleY(0)"></div>`);
     // card 1 — ritmo médio
-    const px = i => 10 + i * (900 / 11);
+    const px = i => 10 + i * (828 / 11);
     const ys = D.ritmoSemana.map(v => 12 + (372 - v) / 40 * 140);
     let dpath = `M ${px(0)} ${ys[0]}`;
     for (let i = 1; i < 12; i++) { const xm = (px(i - 1) + px(i)) / 2; dpath += ` C ${xm} ${ys[i - 1]}, ${xm} ${ys[i]}, ${px(i)} ${ys[i]}`; }
@@ -19,7 +19,7 @@ scene({
       <div class="k" style="font-size:22px">RITMO MÉDIO · MARIANA · 12 SEMANAS</div>
       <div style="display:flex;align-items:baseline;gap:18px;margin-top:18px"><div class="big" style="font-size:168px;letter-spacing:-.055em"><span style="color:#21D193">−</span><span id="e1n">0</span><span style="font-size:64px;letter-spacing:-.03em"> s/km</span></div></div>
       <div style="font-size:34px;font-weight:500;color:#6B6F76;margin-top:10px">de <b style="color:#0A0A0A">6:12</b> para <b style="color:#0A0A0A">5:32</b> por km</div>
-      <svg style="position:absolute;left:48px;bottom:40px;overflow:visible" width="920" height="160">
+      <svg style="position:absolute;left:44px;bottom:40px;overflow:visible" width="848" height="160">
         <defs><linearGradient id="e1a" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#21D193" stop-opacity=".18"/><stop offset="1" stop-color="#21D193" stop-opacity="0"/></linearGradient>
         <clipPath id="e1c"><rect id="e1cr" x="0" y="-40" width="0" height="300"/></clipPath></defs>
         <g clip-path="url(#e1c)"><path d="${dpath} L ${px(11)} 160 L ${px(0)} 160 Z" fill="url(#e1a)"/><path id="e1p" d="${dpath}" fill="none" stroke="#0A0A0A" stroke-width="6" stroke-linecap="round"/></g>
@@ -48,7 +48,7 @@ scene({
     popIn(this.B, t, 15.45, { dy: 140 });
     txt($('#e1n'), String(Math.round(40 * P(t, 15.25, 16.05, E.outCubic))));
     const lp = P(t, 15.2, 16.2, E.inOutCubic);
-    $('#e1cr').setAttribute('width', String(920 * lp + 14));
+    $('#e1cr').setAttribute('width', String(848 * lp + 14));
     const pt = this.lp.getPointAtLength(this.lpL * lp);
     const d = $('#e1d'); d.setAttribute('cx', pt.x); d.setAttribute('cy', pt.y);
     txt($('#e2t'), mmss(lerp(29 * 60 + 40, 27 * 60, P(t, 15.7, 16.5, E.outCubic))));

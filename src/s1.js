@@ -8,10 +8,10 @@ scene({
     const T = (html, style = '') => h(`<div class="layer" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:500;letter-spacing:-.045em;line-height:1;${style}">${html}</div>`);
     // [início, fundo, conteúdo]
     this.shots = [
-      [0.0, '#FFFFFF', T(`<div style="font-size:30px;font-weight:600;letter-spacing:.24em;color:#6B6F76;margin-bottom:46px">PARA DONOS DE ASSESSORIA</div><div style="font-size:132px;color:#0A0A0A">Quantos alunos</div>`)],
-      [0.5, '#070707', T(`<div style="font-size:84px;color:rgba(255,255,255,.7)">você</div><div style="font-size:250px;color:#fff;margin-top:6px">perdeu</div>`)],
+      [0.0, '#FFFFFF', T(`<div style="font-size:30px;font-weight:600;letter-spacing:.24em;color:#6B6F76;margin-bottom:46px">PARA DONOS DE ASSESSORIA</div><div style="font-size:120px;color:#0A0A0A">Quantos alunos</div>`)],
+      [0.5, '#070707', T(`<div style="font-size:84px;color:rgba(255,255,255,.7)">você</div><div style="font-size:230px;color:#fff;margin-top:6px">perdeu</div>`)],
       [1.0, '#FFFFFF', T(`<div style="font-size:150px;color:#0A0A0A">este mês</div>`)],
-      [1.5, '#070707', T(`<div style="font-size:84px;color:rgba(255,255,255,.7)">sem</div><div id="s1p" style="font-size:212px;color:#21D193;margin-top:6px;white-space:nowrap">perceber?</div>`)],
+      [1.5, '#070707', T(`<div style="font-size:84px;color:rgba(255,255,255,.7)">sem</div><div id="s1p" style="font-size:186px;color:#21D193;margin-top:6px;white-space:nowrap">perceber?</div>`)],
     ];
     this.shots.forEach(s => el.appendChild(s[2]));
     $('#scenes').appendChild(el);

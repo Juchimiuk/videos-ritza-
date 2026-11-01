@@ -27,7 +27,7 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 .kword{position:absolute;font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
 .grad-text{color:#fff}
 
-.row{position:absolute;left:32px;width:1016px;height:150px;display:flex;align-items:center;padding:0 40px;gap:28px}
+.row{position:absolute;left:72px;width:936px;height:150px;display:flex;align-items:center;padding:0 34px;gap:24px}
 .row .name{font-size:37px;font-weight:700;letter-spacing:-.015em;color:#0A0A0A}
 .row .st{font-size:27px;font-weight:500;margin-top:6px;display:flex;align-items:center;gap:10px;color:#6B6F76}
 .dot{width:12px;height:12px;border-radius:50%;flex:none}
@@ -39,12 +39,12 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 
 #mapWrap{position:absolute;left:540px;top:880px;width:0;height:0;perspective:1300px;perspective-origin:0 -200px}
 #mapPlane{position:absolute;left:0;top:0;width:1800px;height:2200px;transform-origin:0 0}
-.stat{position:absolute;top:1280px;width:328px;height:250px;padding:34px 32px}
+.stat{position:absolute;top:1280px;width:300px;height:250px;padding:34px 32px}
 .stat .k{font-size:17px;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.5)}
-.stat .v{font-size:70px;font-weight:700;letter-spacing:-.035em;margin-top:16px;line-height:1}
+.stat .v{font-size:62px;font-weight:700;letter-spacing:-.035em;margin-top:16px;line-height:1}
 .stat .u{font-size:24px;font-weight:500;color:rgba(255,255,255,.5);margin-left:6px;letter-spacing:0}
 
-.card4{position:absolute;left:32px;width:1016px;padding:44px 48px}
+.card4{position:absolute;left:72px;width:936px;padding:44px 44px}
 .card4 .k{font-size:18px;font-weight:600;letter-spacing:.18em;color:#6B6F76}
 .card4 .big{font-size:76px;font-weight:500;letter-spacing:-.04em;color:#0A0A0A;line-height:1}
 .pill{display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-weight:600;font-size:22px}
