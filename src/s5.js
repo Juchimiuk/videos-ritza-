@@ -15,13 +15,18 @@ function workoutHTML() {
 }
 
 scene({
-  from: 18.65, to: 22.45,
-  // roteiro novo: laptop já entra aberto; KPIs, push-in e listas em ~3,5 s
-  map: [[18.65, 22.15], [19.2, 22.5], [22.45, 25.0]],
+  from: 18.0, to: 21.1,
+  // roteiro novo: laptop já aberto; só KPIs e o push-in; texto acima do objeto
+  map: [[18.0, 22.2], [18.5, 22.55], [20.3, 24.2], [21.1, 24.35]],
   post(t) {
-    const zin = E.outCubic(inv(18.65, 19.2, t));
-    op(this.el, inv(18.65, 18.9, t)); tf(this.el, `scale(${lerp(.9, 1, zin)})`);
-    fl(this.el, t < 19.2 ? `blur(${(1 - zin) * 14}px)` : 'none');
+    if (!this.tTop) {
+      const W = (top, html, size) => h(`<div style="position:absolute;left:0;right:0;top:${top}px;text-align:center;font-size:${size}px;font-weight:500;letter-spacing:-.045em;line-height:1;color:#fff;overflow:hidden;padding-bottom:.14em"><div style="display:inline-block">${html}</div></div>`);
+      this.tTop = W(176, 'Sua assessoria inteira', 92);
+      this.tTop2 = W(282, '<span style="color:#21D193">em um olhar.</span>', 92);
+      this.el.append(this.tTop, this.tTop2);
+    }
+    op(this.el, 1); tf(this.el, 'none'); fl(this.el, 'none');
+    [[this.tTop, 18.25], [this.tTop2, 18.45]].forEach(([w, t0]) => { const p = E.outExpo(inv(t0, t0 + .6, t)); tf(w.firstElementChild, `translateY(${(1 - p) * 110}%)`); });
   },
   build() {
     const D = DATA;

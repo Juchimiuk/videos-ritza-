@@ -46,7 +46,7 @@ body{font-family:'Inter Display','Inter',sans-serif;color:#fff;-webkit-font-smoo
 
 .card4{position:absolute;left:32px;width:1016px;padding:44px 48px}
 .card4 .k{font-size:18px;font-weight:600;letter-spacing:.18em;color:#6B6F76}
-.card4 .big{font-size:76px;font-weight:700;letter-spacing:-.04em;color:#0A0A0A;line-height:1}
+.card4 .big{font-size:76px;font-weight:500;letter-spacing:-.04em;color:#0A0A0A;line-height:1}
 .pill{display:inline-flex;align-items:center;padding:7px 16px;border-radius:999px;font-weight:600;font-size:22px}
 
 #lapWorld{position:absolute;left:540px;top:980px;width:0;height:0;perspective:2400px}

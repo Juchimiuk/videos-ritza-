@@ -2,7 +2,7 @@
 const SCENES = [];
 function scene(def) { SCENES.push(def); return def; }
 // limites de cena (segundos) — múltiplos de 0,5 s (120 BPM)
-const T = { s1: 0, s2: 3, s3: 6.5, s4: 13, s5: 16, s6: 19, s7: 22, end: 26 };
+const T = { s1: 0, s2: 2.5, s3: 5.6, s4: 12, s5: 15, s6: 18, s7: 21, end: 26 };
 // remapeamento de tempo: cenas reaproveitadas rodam no seu tempo original (map = [[novo, antigo], ...])
 function warp(t, map) {
   if (t <= map[0][0]) return map[0][1] + (t - map[0][0]);
@@ -30,21 +30,13 @@ function updateBg(t) {
     tf(b, `translate3d(${x}px, ${y - 400}px, 0)`);
   }));
   // claro/escuro alternando por cena
-  const light = K(t, [[0, 0], [2.45, 0], [2.95, 1, E.inOutCubic], [12.7, 1], [13.0, 0, E.inOutCubic], [15.65, 0], [15.95, 1, E.inOutCubic],
-    [18.65, 1], [18.95, 0, E.inOutCubic], [26, 0]]);
+  const light = K(t, [[0, 1], [11.75, 1], [11.95, 0, E.inOutCubic], [14.98, 0], [15.0, 1, E.linear], [17.98, 1], [18.0, 0, E.linear], [26, 0]]);
   op($('#bgLight'), light);
   css($('#vignette'), 'opacity', String(lerp(1, .35, light)));
 }
 
 // ---------- legendas ----------
-const CAPS = [
-  [3.2, 6.2, 'Veja quem treinou — e <b>quem está sumindo</b>.'],
-  [6.5, 9.7, 'Um toque: <b>treino enviado</b> ao aluno.'],
-  [10.0, 12.5, 'Horas depois: <b>treino feito.</b> Ele voltou.'],
-  [13.1, 15.55, 'Sem pedir print: <b>o Strava sincroniza sozinho</b>.'],
-  [16.0, 18.55, 'Aluno que vê evolução <b>continua com você</b>.'],
-  [19.1, 21.75, 'Sua assessoria inteira <b>em um olhar</b>.'],
-];
+const CAPS = []; // sem pílulas de legenda: o texto faz parte de cada cena
 function updateCaps(t) {
   const pill = $('#capPill');
   const c = CAPS.find(c => t >= c[0] && t <= c[1] + .35);

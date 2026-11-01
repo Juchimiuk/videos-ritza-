@@ -1,6 +1,6 @@
 // ===== Cena 3 do roteiro — Treino enviado ao aluno em risco e prova de que ele voltou (6,3–13 s) =====
 scene({
-  from: 6.25, to: 13.05,
+  from: 5.45, to: 12.05,
   build() {
     const el = this.el = h(`<div class="scene" id="s6"></div>`);
     // celular
@@ -31,14 +31,42 @@ scene({
     // o card nasce no botão "Enviar treino" do aluno em risco (cena 2, em 6,3 s)
     const s2 = SCENES[1];
     const prev = s2.el.style.display; s2.el.style.display = '';
-    s2.update(6.3);
+    s2.update(5.45);
     const r = s2.sendBtn.getBoundingClientRect();
     const s0 = .3;
     this.r0 = { x: r.left + r.width / 2 - 300 * s0, y: r.top + r.height / 2 - 290 * s0, s: s0 };
     s2.el.style.display = prev;
   },
+  // tempo real -> linha do tempo interna (a animação foi escrita 0,75 s adiante)
   update(t, ctx) {
-    if (!this.r0) { this.measure(); if (t < 7.05) SCENES[1].update(t); }
+    if (!this.r0) { this.measure(); if (t < 5.85) SCENES[1].update(t); }
+    if (!this.txt) {
+      const W = (html, size) => h(`<div style="position:absolute;left:0;right:0;top:1430px;text-align:center;font-size:${size}px;font-weight:500;letter-spacing:-.04em;line-height:1;color:#0A0A0A;overflow:hidden;padding-bottom:.14em"><div style="display:inline-block">${html}</div></div>`);
+      this.txt = [[5.95, 9.05, W('Um toque. <span style="color:#21D193">Treino enviado.</span>', 64)], [9.35, 10.45, W('Horas depois…', 64)]];
+      this.txt.forEach(x => this.el.appendChild(x[2]));
+      this.veil = h(`<div class="layer" style="background:rgba(255,255,255,.55);opacity:0"></div>`);
+      this.big = h(`<div class="layer" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:500;letter-spacing:-.05em;line-height:.95;color:#0A0A0A;opacity:0"><div style="font-size:190px">Ele</div><div style="font-size:250px;color:#21D193">voltou.</div></div>`);
+      this.el.append(this.veil, this.big);
+    }
+    this.upd(t + .75, ctx);
+    // texto embaixo do celular, trocando no ritmo
+    this.txt.forEach(([a, b, w]) => {
+      const p = E.outExpo(inv(a, a + .55, t)), q = E.inCubic(inv(b - .25, b, t));
+      tf(w.firstElementChild, `translateY(${(1 - p) * 110 - q * 110}%)`); op(w, t > a - .01 && t < b + .01 ? 1 : 0);
+    });
+    // rack focus: o celular perde o foco e "Ele voltou." entra nítido por cima (10,6 s)
+    const rf = E.inOutCubic(inv(10.55, 11.0, t));
+    fl(this.phoneWrap, rf > 0 ? `blur(${rf * 16}px)` : 'none');
+    op(this.veil, rf);
+    const bp = E.outExpo(inv(10.65, 11.25, t));
+    op(this.big, bp); tf(this.big, `scale(${lerp(1.08, 1, bp) + Math.max(0, t - 11.25) * .03})`);
+    // saída: tudo escorre para o lado (whip com borrão) até o Strava
+    const sm = E.inQuart(inv(11.65, 12.05, t));
+    if (t > 11.65) { tf(this.el, `translateX(${-sm * 1250}px)`); mblur(this.el, Math.sin(Math.min(1, sm * 1.15) * Math.PI) * 80 + sm * 30); }
+    else { tf(this.el, 'none'); fl(this.el, 'none'); }
+  },
+  upd(t, ctx) {
+    
     const r0 = this.r0;
     // trajetória: decola (27,0–27,3), atravessa o espaço até o centro (27,3–28,4), pousa no celular (28,6–29,15)
     const lift = E.outCubic(inv(6.35, 6.65, t));
@@ -105,10 +133,5 @@ scene({
     const bd = this.phone.querySelector('#doneBadge');
     const bdp = E.spring(inv(10.4, 11.1, t));
     op(bd, inv(10.4, 10.55, t)); tf(bd, `translateY(${(1 - bdp) * 20}px) scale(${lerp(.9, 1, bdp)})`);
-    // saída: whip-pan para a esquerda (12,55–13,05)
-    const wp = E.inQuart(inv(12.55, 13.05, t));
-    if (t > 12.55) { tf(this.el, `translateX(${-1400 * wp}px)`); mblur(this.el, Math.sin(Math.PI * Math.min(1, wp * 1.1)) * 70 + wp * 20); }
-    else { tf(this.el, 'none'); fl(this.el, 'none'); }
-    op(this.el, 1);
   },
 });

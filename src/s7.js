@@ -1,53 +1,60 @@
-// ===== Cena 7 — CTA (31–34 s) =====
+// ===== Cena 7 — Tela verde "Ritza" → morph no ícone do app → CTA (20,6–26 s) =====
 scene({
-  from: 21.95, to: 26.05,
-  map: [[21.95, 30.55], [26.1, 34.7]],
+  from: 20.6, to: 26.05,
   build() {
-    const el = this.el = h(`<div class="scene" id="s7" style="color:#07111F"></div>`);
-    this.blobs = [];
-    [['rgba(255,255,255,.35)', 1100], ['rgba(0,0,0,.08)', 1300]].forEach(([c, s]) => {
-      const b = h(`<div style="position:absolute;left:0;top:0;width:${s}px;height:${s}px;border-radius:50%;background:radial-gradient(closest-side,${c},rgba(33,209,147,0))"></div>`);
-      el.appendChild(b); this.blobs.push(b);
-    });
-    this.stripes = h(`<div style="position:absolute;left:-600px;top:-400px;width:2400px;height:2800px;opacity:0;background:none"></div>`);
-    el.appendChild(this.stripes);
+    const el = this.el = h(`<div class="scene" id="s7" style="color:#0A0A0A"></div>`);
+    this.bg = h(`<div class="layer" style="background:#FFFFFF"></div>`);
     this.cam = h(`<div class="layer" style="transform-origin:540px 820px"></div>`);
-    el.appendChild(this.cam);
-    this.icon = h(`<div style="position:absolute;left:350px;top:190px;width:380px;height:380px;border-radius:98px;background:#0A0A0A;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)">
-      <img src="../assets/logo_hd.png" style="width:244px">
-      <div id="s7shine" style="position:absolute;top:-80px;left:0;width:90px;height:480px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0))"></div></div>`);
-    this.word = h(`<div style="position:absolute;left:0;right:0;top:670px;text-align:center;font-size:164px;font-weight:800;letter-spacing:-.055em;line-height:1;color:#0A0A0A">Ritza</div>`);
-    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:900px;text-align:center;font-size:74px;font-weight:600;letter-spacing:-.035em;line-height:1.12;color:#0A0A0A"></div>`);
-    this.hw = ['O', 'app', 'da', 'sua', 'assessoria', '<br>', 'de', 'corrida'].map(w => {
+    this.head = h(`<div style="position:absolute;left:32px;right:32px;top:736px;text-align:center;font-size:78px;font-weight:500;letter-spacing:-.045em;line-height:1.08"></div>`);
+    this.hw = ['O', 'app', 'da', 'sua', 'assessoria', '<br>', 'de', '<span style="color:#21D193">corrida.</span>'].map(w => {
       if (w === '<br>') { this.head.appendChild(document.createElement('br')); return null; }
-      const s = h(`<span style="display:inline-block;margin:0 .14em">${w}</span>`); this.head.appendChild(s); return s;
+      const m = h(`<span style="display:inline-block;overflow:hidden;vertical-align:top;padding:0 .12em .14em"><span style="display:inline-block">${w}</span></span>`);
+      this.head.appendChild(m); return m.firstElementChild;
     }).filter(Boolean);
-    this.btn = h(`<div style="position:absolute;left:32px;top:1210px;width:1016px;height:164px;border-radius:24px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:600;letter-spacing:-.015em;overflow:hidden;box-shadow:0 30px 60px -26px rgba(0,0,0,.6)">
-      <svg width="40" height="40" viewBox="0 0 44 44"><rect x="5" y="9" width="34" height="30" rx="6" fill="none" stroke="#21D193" stroke-width="3"/><path d="M5 18 H39 M14 4 V13 M30 4 V13" stroke="#21D193" stroke-width="3" stroke-linecap="round"/></svg>
+    this.btn = h(`<div style="position:absolute;left:32px;top:1060px;width:1016px;height:164px;border-radius:26px;background:#0A0A0A;color:#fff;display:flex;align-items:center;justify-content:center;gap:18px;font-size:46px;font-weight:500;letter-spacing:-.02em;overflow:hidden">
       Agendar demonstração <span style="color:#21D193">· 20 min</span>
-      <div id="s7bshine" style="position:absolute;top:-20px;left:0;width:120px;height:180px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.10),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
-    this.url = h(`<div style="position:absolute;left:0;right:0;top:1446px;text-align:center;font-size:56px;font-weight:700;letter-spacing:-.025em;color:#0A0A0A">ritza.com.br <span style="font-weight:500;opacity:.7">· link na bio</span>
-      <svg style="position:absolute;left:178px;top:76px;overflow:visible" width="340" height="20"><path d="M4 10 C 100 2, 240 2, 336 10" fill="none" stroke="#0A0A0A" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/></svg></div>`);
-    this.cam.append(this.icon, this.word, this.head, this.btn, this.url);
+      <div class="sh" style="position:absolute;top:-20px;left:0;width:140px;height:210px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0));transform:skewX(-20deg)"></div></div>`);
+    this.url = h(`<div style="position:absolute;left:0;right:0;top:1300px;text-align:center;font-size:54px;font-weight:500;letter-spacing:-.03em">ritza.com.br <span style="color:#6B6F76">· link na bio</span></div>`);
+    this.line = h(`<div style="position:absolute;left:190px;top:1384px;width:700px;height:3px;background:#0A0A0A;transform-origin:0 50%;transform:scaleX(0)"></div>`);
+    this.star = h(`<div style="position:absolute;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#21D193;box-shadow:0 0 18px 4px rgba(33,209,147,.6);opacity:0"></div>`);
+    this.cam.append(this.head, this.btn, this.url, this.line, this.star);
+    // tela verde cheia que vira o ícone do app
+    this.card = h(`<div style="position:absolute;left:0;top:0;width:1080px;height:1920px;background:#21D193;overflow:hidden;display:flex;align-items:center;justify-content:center">
+      <div class="wm" style="font-size:280px;font-weight:500;letter-spacing:-.06em;color:#0A0A0A">ritza</div>
+      <img class="lg" src="../assets/logo_hd.png" style="position:absolute;left:50%;top:50%;width:64%;transform:translate(-50%,-50%);opacity:0"></div>`);
+    el.append(this.bg, this.cam, this.card);
     $('#s7host').appendChild(el);
   },
   update(t) {
-    // wipe circular verde a partir da notificação do celular
-    const w = E.inOutCubic(inv(30.55, 31.15, t));
-    css($('#bgGreen'), 'clipPath', `circle(${w * 2300}px at 540px 820px)`);
-    css(this.el, 'clipPath', `circle(${w * 2300}px at 540px 820px)`);
-    this.blobs.forEach((b, i) => tf(b, `translate(${200 + Math.sin(t * .7 + i * 2) * 400 - 300}px, ${300 + i * 330 + Math.cos(t * .6 + i) * 200}px) scale(1)`));
-    tf(this.stripes, `translate(${(t - 31) * -70}px, ${(t - 31) * 40}px)`);
-    // logo, marca, título, botão, site — entram nas batidas
-    popIn(this.icon, t, 30.9, { dy: 100, s0: .85, blur: 12, dur: .9, ease: E.outExpo });
-    tf($('#s7shine'), `translateX(${-120 + E.inOutCubic(inv(31.6, 32.3, t)) * 520}px) rotate(20deg)`);
-    popIn(this.word, t, 31.25, { dy: 80, ease: E.outExpo });
-    this.hw.forEach((s, i) => popIn(s, t, 31.5 + i * .06, { dy: 70, dur: .7, ease: E.outExpo }));
-    popIn(this.btn, t, 32.0, { dy: 100, ease: E.outExpo });
-    tf($('#s7bshine'), `translateX(${-200 + (((t - 32.4) % 1) + 1) % 1 * 1300}px) skewX(-20deg)`);
-    popIn(this.url, t, 32.25, { dy: 60, ease: E.outExpo });
-    css(this.url.querySelector('path'), 'strokeDashoffset', String(1 - P(t, 32.5, 33.0, E.outCubic)));
-    // câmera: push-in contínuo, leve paralaxe
-    tf(this.cam, `scale(${K(t, [[30.6, 1.08], [31.4, 1, E.outCubic], [34, 1.045, E.inOutSine]])}) translateY(0px)`);
+    // 1) whip para a tela verde (20,6–21,05)
+    const wi = E.outQuart(inv(20.6, 21.05, t));
+    // 2) morph: a tela verde encolhe até o ícone (21,6–22,25)
+    const m = E.inOutQuart(inv(21.6, 22.25, t));
+    const w = lerp(1080, 380, m), hh = lerp(1920, 380, m);
+    const cx = 540, cy = lerp(960, 470, m);
+    css(this.card, 'width', `${w}px`); css(this.card, 'height', `${hh}px`);
+    css(this.card, 'borderRadius', `${lerp(0, 98, m)}px`);
+    const g = [33, 209, 147], k = [10, 10, 10], c = g.map((v, i) => Math.round(lerp(v, k[i], E.inOutCubic(inv(21.85, 22.25, t)))));
+    css(this.card, 'background', `rgb(${c.join(',')})`);
+    css(this.card, 'boxShadow', `0 40px 80px -30px rgba(0,0,0,${.5 * m})`);
+    const breathe = K(t, [[21.05, 1], [21.6, 1.03, E.inOutSine]]);
+    tf(this.card, `translate(${cx - w / 2 + (1 - wi) * 1300}px, ${cy - hh / 2}px) scale(${m > 0 ? 1 : breathe})`);
+    if (t < 21.05) mblur(this.card, (1 - wi) * 90); else fl(this.card, 'none');
+    const wm = this.card.querySelector('.wm');
+    op(wm, 1 - inv(21.6, 21.85, t)); tf(wm, `scale(${lerp(1, .5, E.inCubic(inv(21.6, 21.85, t)))})`);
+    const lg = this.card.querySelector('.lg');
+    const lp = E.outExpo(inv(22.0, 22.5, t)); op(lg, lp); tf(lg, `translate(-50%,-50%) scale(${lerp(.85, 1, lp)})`);
+    // 3) CTA entra palavra a palavra; um ponto verde risca a linha sob o site
+    op(this.bg, t > 21.55 ? 1 : 0); op(this.cam, t > 21.55 ? 1 : 0);
+    this.hw.forEach((s, i) => { const p = E.outExpo(inv(22.25 + i * .06, 22.95 + i * .06, t)); tf(s, `translateY(${(1 - p) * 110}%)`); });
+    popIn(this.btn, t, 22.7, { dy: 80, ease: E.outExpo });
+    tf(this.btn.querySelector('.sh'), `translateX(${-200 + ((((t - 23.3) % 1.4) + 1.4) % 1.4) / 1.4 * 1400}px) skewX(-20deg)`);
+    popIn(this.url, t, 22.95, { dy: 50, ease: E.outExpo });
+    const lw = E.inOutCubic(inv(23.3, 23.95, t));
+    tf(this.line, `scaleX(${lw})`);
+    op(this.star, lw > 0 && lw < 1 ? 1 : lw >= 1 ? 1 - inv(23.95, 24.3, t) : 0);
+    tf(this.star, `translate(${190 + 700 * lw}px, 1385px) scale(${1 + Math.sin(lw * Math.PI) * .6})`);
+    // câmera: push-in contínuo até o fim
+    tf(this.cam, `scale(${K(t, [[21.6, 1.03], [22.6, 1, E.outExpo], [26, 1.035, E.inOutSine]])})`);
   },
 });

@@ -2,12 +2,18 @@
 const ROUTE = 'M 1450 1650 C 1560 1400, 1580 1100, 1500 850 C 1430 640, 1200 470, 950 450 C 700 430, 450 560, 380 800 C 320 1000, 420 1150, 560 1180 C 700 1210, 760 1050, 880 980 C 1000 910, 1150 980, 1180 1150 C 1210 1330, 1080 1500, 900 1600 C 720 1700, 520 1760, 430 1640 C 360 1540, 400 1420, 520 1400 C 700 1380, 900 1520, 1100 1630 C 1250 1715, 1380 1720, 1440 1660';
 const RBOX = { cx: 980, cy: 1110, w: 1240, h: 1330 };
 scene({
-  from: 12.55, to: 16.05,
-  // roteiro novo: corrida comprimida em ~2,2 s, sem a sequência card → ícone
-  map: [[12.55, 7.55], [13.1, 8.15], [15.3, 12.85], [16.1, 12.9]],
+  from: 11.6, to: 15.0,
+  // roteiro novo: corrida comprimida em ~2,4 s; texto em volta do mapa
+  map: [[11.6, 7.85], [12.05, 8.2], [14.45, 12.85], [15.1, 12.9]],
   post(t) {
-    const wp = E.inQuart(inv(15.6, 16.05, t));
-    if (t > 15.6) { tf(this.el, `translateX(${-1400 * wp}px)`); mblur(this.el, Math.sin(Math.PI * Math.min(1, wp * 1.1)) * 70 + wp * 20); }
+    if (!this.tTop) {
+      const W = (top, html, size, color = '#fff') => h(`<div style="position:absolute;left:0;right:0;top:${top}px;text-align:center;font-size:${size}px;font-weight:500;letter-spacing:-.045em;line-height:1;color:${color};overflow:hidden;padding-bottom:.14em"><div style="display:inline-block">${html}</div></div>`);
+      this.tTop = W(200, 'Sem pedir <span style="color:#21D193">print.</span>', 112);
+      this.tBot = W(1566, 'O Strava sincroniza sozinho.', 50, 'rgba(255,255,255,.8)');
+      this.el.append(this.tTop, this.tBot);
+    }
+    op(this.chip, 0); op(this.top, 0);
+    [[this.tTop, 12.2], [this.tBot, 12.7]].forEach(([w, t0]) => { const p = E.outExpo(inv(t0, t0 + .6, t)); tf(w.firstElementChild, `translateY(${(1 - p) * 110}%)`); });
   },
   build() {
     const el = this.el = h(`<div class="scene" id="s3"></div>`);

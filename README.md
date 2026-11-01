@@ -6,6 +6,7 @@ Animação de 26 s (paleta restrita: verde #21D193, branco e preto) do Ritza, o 
 - `src/`: a animação. `core.js` tem easing, molas e keyframes; `data.js` tem os dados consistentes entre as cenas; `s1.js` a `s7.js` são as cenas.
 - `assets/logo_original.png`: o logo enviado, sem alteração. `logo_hd.png` é a mesma arte ampliada 8× com bordas nítidas, mesma forma e mesma cor.
 - `render.js`: renderiza um intervalo de frames em MP4. `build.sh` renderiza cada cena em `out/cenas/NN_*.mp4` (em paralelo) e junta tudo em `out/ritza_reels_1080x1920_60fps.mp4`.
+- O vídeo não usa pílulas de legenda: os textos fazem parte de cada cena, em volta do objeto principal.
 - `still.js`: gera quadros de revisão (`GUIDES=1` mostra as margens reservadas: 150 px no topo e 260 px na base).
 - `BATIDAS.md`: folha de batidas (120 BPM) para encaixar a música.
 
